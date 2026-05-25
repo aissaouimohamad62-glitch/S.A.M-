@@ -92,6 +92,7 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: var(--sys-cyan); }
     </style>
+<base target="_blank">
 </head>
 <body class="min-h-screen p-6">
     <nav class="max-w-6xl mx-auto mb-4 p-2 bg-slate-900/60 backdrop-blur border border-slate-800 rounded-lg flex flex-wrap justify-center gap-2">
@@ -218,7 +219,16 @@
                 
                 // Sync with SovereignEngine if available
                 if(window.SovereignEngine && typeof window.SovereignEngine.logToSystem === 'function') {
-                    window.SovereignEngine.logToSystem('quest', `تم قهر الزنزانة: مكافأة +${xpGain} XP و +${intGain} INT`);
+                    window.SovereignEngine.logToSystem('dungeon', `تم قهر الزنزانة [${gameName}]: مكافأة +${xpGain} XP و +${intGain} INT`);
+
+                // Save last dungeon info for brain stats
+                const lastDungeon = { name: gameName, time: Date.now(), xp: xpGain, int: intGain };
+                localStorage.setItem('sovereign_last_dungeon', JSON.stringify(lastDungeon));
+
+                // Save dungeon history for accurate INT calculation
+                let dungeonHistory = JSON.parse(localStorage.getItem('sovereign_dungeon_history') || '[]');
+                dungeonHistory.push(lastDungeon);
+                localStorage.setItem('sovereign_dungeon_history', JSON.stringify(dungeonHistory.slice(-50))); // Keep last 50
                 }
             }
         };
