@@ -91,6 +91,7 @@
         ::-webkit-scrollbar-thumb { background: var(--sys-cyan); }
     </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 <body class="p-2 md:p-6 relative text-slate-200">
 
@@ -485,6 +486,7 @@
             const owned = this.getPurchased();
             owned.push(id);
             localStorage.setItem('sovereign_owned_titles', JSON.stringify(owned));
+        window.dispatchEvent(new StorageEvent('storage', { key: 'sovereign_owned_titles' }));
             PlayerState.save();
 
             if(window.SovereignEngine && SovereignEngine.logToSystem) {
@@ -500,6 +502,7 @@
             const titleData = this.titlesDatabase.find(item => item.id === id);
             if (!titleData) return;
             localStorage.setItem('sovereign_title', titleData.name);
+        window.dispatchEvent(new StorageEvent('storage', { key: 'sovereign_title' }));
             this.updateActiveTitle();
             if(window.SovereignEngine && SovereignEngine.logToSystem) {
                 SovereignEngine.logToSystem('system', `Title Equipped: ${titleData.name}`);
@@ -557,10 +560,16 @@
             if(e.key === 'monarch_system_data') {
                 PlayerState.load();
                 PlayerState.updateUI();
+                SovereignStore.updateStoreGold();
                 SovereignStore.renderStore();
             }
             if(e.key === 'sovereign_title') {
                 SovereignStore.updateActiveTitle();
+                SovereignStore.renderStore();
+            }
+            if(e.key === 'sovereign_owned_titles') {
+                SovereignStore.purchasedTitles = JSON.parse(localStorage.getItem('sovereign_owned_titles')) || ["tier_1_alpha"];
+                SovereignStore.renderStore();
             }
         });
     });
