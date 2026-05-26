@@ -200,38 +200,39 @@
             },
             
             reward(xpGain, intGain) {
-                this.data.xp = (this.data.xp || 0) + xpGain;
-                if (!this.data.stats) this.data.stats = {int: 10};
-                this.data.stats.int = (this.data.stats.int || 10) + intGain;
-                
-                const currentLvl = this.data.level || 1;
-                const nextXpRequired = currentLvl * 100;
-                
-                if(this.data.xp >= nextXpRequired) {
-                    this.data.xp -= nextXpRequired;
-                    this.data.level = currentLvl + 1;
-                    this.data.ap = (this.data.ap || 0) + 3;
-                    
-                    // Dispatch level up event for cross-page sync
-                    window.dispatchEvent(new CustomEvent('playerLevelUp', { detail: { level: this.data.level } }));
-                }
-                this.save();
-                
-                // Sync with SovereignEngine if available
-                if(window.SovereignEngine && typeof window.SovereignEngine.logToSystem === 'function') {
-                    window.SovereignEngine.logToSystem('dungeon', `تم قهر الزنزانة [${gameName}]: مكافأة +${xpGain} XP و +${intGain} INT`);
+    this.data.xp = (this.data.xp || 0) + xpGain;
+    if (!this.data.stats) this.data.stats = {int: 10};
+    this.data.stats.int = (this.data.stats.int || 10) + intGain;
+    
+    const currentLvl = this.data.level || 1;
+    const nextXpRequired = currentLvl * 100;
+    
+    if(this.data.xp >= nextXpRequired) {
+        this.data.xp -= nextXpRequired;
+        this.data.level = currentLvl + 1;
+        this.data.ap = (this.data.ap || 0) + 3;
+        window.dispatchEvent(new CustomEvent('playerLevelUp', { detail: { level: this.data.level } }));
+    }
+    this.save();
+    
+    // 1. إدراج السجل برمجياً في الذاكرة المركزية للسجلات
+    let logs = JSON.parse(localStorage.getItem('sovereign_system_logs') || '[]');
+    logs.unshift({
+        id: Date.now(),
+        time: new Date().toLocaleTimeString('ar-EG'),
+        type: 'dungeon',
+        text: `تم قهر زنزانة ذهنية: مكافأة +${xpGain} XP و +${intGain} INT`
+    });
+    localStorage.setItem('sovereign_system_logs', JSON.stringify(logs.slice(0, 200)));
 
-                // Save last dungeon info for brain stats
-                const lastDungeon = { name: gameName, time: Date.now(), xp: xpGain, int: intGain };
-                localStorage.setItem('sovereign_last_dungeon', JSON.stringify(lastDungeon));
-
-                // Save dungeon history for accurate INT calculation
-                let dungeonHistory = JSON.parse(localStorage.getItem('sovereign_dungeon_history') || '[]');
-                dungeonHistory.push(lastDungeon);
-                localStorage.setItem('sovereign_dungeon_history', JSON.stringify(dungeonHistory.slice(-50))); // Keep last 50
-                }
-            }
+    // 2. تحديث تاريخ الزنازين الخاص بإحصائيات العقل
+    const lastDungeon = { time: Date.now(), xp: xpGain, int: intGain };
+    let dungeonHistory = JSON.parse(localStorage.getItem('sovereign_dungeon_history') || '[]');
+    dungeonHistory.push(lastDungeon);
+    localStorage.setItem('sovereign_dungeon_history', JSON.stringify(dungeonHistory.slice(-50)));
+}
         };
+        PlayerState.init();
 
         // ==========================================
         // 2. DUNGEON ENGINE (محرك تشغيل الزنازين)
@@ -713,6 +714,26 @@
         window.SudokuGame = SudokuGame;
         window.ChessGame = ChessGame;
         window.NBackGame = NBackGame;
+        window.addEventListener('storage', (e) => {
+    // مراقبة تحديثات البيانات المركزية
+    if (e.key === 'monarch_system_data') {
+        console.log("System Data Sync detected!");
+        if (typeof PlayerState !== 'undefined') {
+            PlayerState.init(); // إعادة تحميل الحالة فوراً
+        }
+    }
+});
     </script>
+    <script>
+// بروتوكول حماية وتوجيه القائمة الجانبية في الصفحات الخارجية
+if (typeof Router === 'undefined' || !Router.navigate) {
+    window.Router = {
+        navigate(viewId) {
+            // التوجيه تلقائياً إلى الصفحة الرئيسية مع تمرير التبويب المستهدف
+            window.location.href = `index.html?view=${viewId}`;
+        }
+    };
+}
+</script>
 </body>
 </html>
