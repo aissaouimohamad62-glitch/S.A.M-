@@ -391,5 +391,16 @@
         window.addEventListener('DOMContentLoaded', () => LogManager.init());
         window.LogManager = LogManager;
     </script>
+    <script>
+// بروتوكول حماية وتوجيه القائمة الجانبية في الصفحات الخارجية
+if (typeof Router === 'undefined' || !Router.navigate) {
+    window.Router = {
+        navigate(viewId) {
+            // التوجيه تلقائياً إلى الصفحة الرئيسية مع تمرير التبويب المستهدف
+            window.location.href = `index.html?view=${viewId}`;
+        }
+    };
+}
+</script>
 </body>
 </html>
