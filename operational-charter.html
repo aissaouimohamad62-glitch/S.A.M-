@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovereign System | System Logs & Protocol Monitor</title>
+    <title>Sovereign System | Operational Charter</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -15,9 +15,6 @@
             --sys-bg-dark: #02040a;
             --sys-panel: rgba(5, 10, 25, 0.85);
             --sys-border: rgba(0, 240, 255, 0.3);
-            --sys-gold: #fbbf24;
-            --sys-red: #ef4444;
-            --sys-green: #10b981;
         }
         body {
             font-family: 'Cairo', sans-serif;
@@ -38,20 +35,10 @@
             position: relative;
         }
         .sl-panel::before, .sl-panel::after {
-            content: ''; position: absolute; width: 20px; height: 20px;
-            pointer-events: none;
+            content: ''; position: absolute; width: 20px; height: 20px; pointer-events: none;
         }
         .sl-panel::before { top: -2px; left: -2px; border-top: 3px solid var(--sys-cyan); border-left: 3px solid var(--sys-cyan); }
         .sl-panel::after { bottom: -2px; right: -2px; border-bottom: 3px solid var(--sys-cyan); border-right: 3px solid var(--sys-cyan); }
-        .sl-glow-text {
-            color: var(--sys-cyan);
-            text-shadow: 0 0 8px var(--sys-cyan-glow);
-        }
-        @keyframes systemPopIn {
-            0% { opacity: 0; transform: scale(0.95) translateY(10px); filter: brightness(2); }
-            100% { opacity: 1; transform: scale(1) translateY(0); filter: brightness(1); }
-        }
-        .animate-system-pop { animation: systemPopIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         .sl-btn {
             background: linear-gradient(180deg, rgba(0, 240, 255, 0.05) 0%, rgba(5, 10, 25, 0.8) 100%);
             border: 1px solid var(--sys-cyan);
@@ -81,20 +68,6 @@
             color: white;
             box-shadow: 0 0 20px var(--sys-purple-glow);
         }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: var(--sys-cyan); }
-        .log-item {
-            transition: all 0.3s ease;
-            border-right: 3px solid transparent;
-        }
-        .log-item:hover {
-            background: rgba(255, 255, 255, 0.03);
-            transform: translateX(-5px);
-        }
-        .log-quest { border-right-color: var(--sys-gold); }
-        .log-system { border-right-color: var(--sys-cyan); }
-        .log-level { border-right-color: var(--sys-purple); }
-        .log-error { border-right-color: var(--sys-red); }
         .block-active {
             border: 1px solid var(--sys-cyan);
             background: rgba(0, 240, 255, 0.05);
@@ -107,18 +80,14 @@
             0%, 100% { box-shadow: 0 0 5px var(--sys-cyan); }
             50% { box-shadow: 0 0 20px var(--sys-cyan); }
         }
-        .progress-bar-container {
-            width: 100%; height: 6px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 999px; overflow: hidden;
-        }
-        .progress-bar-fill {
-            height: 100%; background: linear-gradient(90deg, var(--sys-cyan), var(--sys-purple));
-            box-shadow: 0 0 10px var(--sys-cyan-glow);
-            transition: width 0.6s ease;
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--sys-cyan); }
+        .animate-system-pop { animation: systemPopIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        @keyframes systemPopIn {
+            0% { opacity: 0; transform: scale(0.95) translateY(10px); filter: brightness(2); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: brightness(1); }
         }
     </style>
-<base target="_blank">
 </head>
 <body class="p-2 md:p-6">
 
@@ -127,15 +96,12 @@
     <!-- HEADER -->
     <header class="sl-panel p-4 md:p-6 flex flex-col lg:flex-row justify-between items-center gap-4 animate-system-pop" style="border-color: rgba(157, 78, 221, 0.6);">
         <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-lg bg-[var(--sys-cyan)]/10 border border-[var(--sys-cyan)] flex items-center justify-center text-xl shadow-[0_0_15px_rgba(0,240,255,0.2)]">
-                📊
-            </div>
+            <div class="w-12 h-12 rounded-lg bg-[var(--sys-cyan)]/10 border border-[var(--sys-cyan)] flex items-center justify-center text-xl shadow-[0_0_15px_rgba(0,240,255,0.2)]">📜</div>
             <div>
                 <h1 class="text-xl md:text-2xl font-black tracking-wide text-white">SOVEREIGN SYSTEM</h1>
-                <p class="text-xs text-[var(--sys-cyan)] sys-font tracking-widest">SYSTEM LOGS & PROTOCOL MONITOR</p>
+                <p class="text-xs text-[var(--sys-cyan)] sys-font tracking-widest">OPERATIONAL CHARTER — الميثاق التشغيلي</p>
             </div>
         </div>
-
         <div class="flex flex-wrap items-center gap-4 bg-slate-950/60 px-6 py-3 rounded-lg border border-slate-800">
             <div class="text-center">
                 <span class="block text-[10px] text-slate-500 sys-font">LEVEL</span>
@@ -156,304 +122,274 @@
                     <span id="player-gold" class="text-lg font-bold text-yellow-400 sys-font">0</span>
                 </div>
             </div>
-            <div class="h-8 w-[1px] bg-slate-800"></div>
-            <div class="text-center">
-                <span class="block text-[10px] text-slate-500 sys-font">PROGRAM</span>
-                <span id="active-program-badge" class="text-xs font-bold text-[var(--sys-purple)] sys-font border border-[var(--sys-purple)] px-2 py-0.5 rounded bg-[var(--sys-purple)]/10">WEEK 1</span>
-            </div>
         </div>
     </header>
 
     <!-- NAVIGATION -->
     <nav class="flex flex-wrap gap-2 justify-center md:justify-start animate-system-pop" style="animation-delay: 0.1s;">
-        <a href="index.html" class="px-4 py-2 text-xs sys-font sl-panel rounded hover:bg-[var(--sys-cyan)] hover:text-black transition duration-300 text-slate-300 border border-slate-800">
-            🏠 DASHBOARD
-        </a>
-        <a href="active-quests.html" class="px-4 py-2 text-xs sys-font sl-panel rounded hover:bg-[var(--sys-cyan)] hover:text-black transition duration-300 text-slate-300 border border-slate-800">
-            ⚔️ ACTIVE QUESTS
-        </a>
-        <a href="brain-stats.html" class="px-4 py-2 text-xs sys-font sl-panel rounded hover:bg-[var(--sys-cyan)] hover:text-black transition duration-300 text-slate-300 border border-slate-800">
-            🧠 BRAIN STATS
-        </a>
-        <a href="operational-charter.html" class="px-4 py-2 text-xs sys-font sl-panel rounded hover:bg-[var(--sys-cyan)] hover:text-black transition duration-300 text-slate-300 border border-slate-800">
-            📜 CHARTER
-        </a>
-        <a href="monarch-ai.html" class="px-4 py-2 text-xs sys-font sl-panel rounded hover:bg-[var(--sys-cyan)] hover:text-black transition duration-300 text-slate-300 border border-slate-800">
-            🤖 MONARCH AI
-        </a>
-        <a href="system-logs.html" class="px-4 py-2 text-xs sys-font bg-cyan-950/40 border border-[var(--sys-cyan)] text-[var(--sys-cyan)] rounded font-bold shadow-[0_0_10px_rgba(0,240,255,0.1)]">
-            📊 SYSTEM LOGS
-        </a>
+        <a href="index.html" class="px-4 py-2 text-xs sys-font sl-panel rounded hover:bg-[var(--sys-cyan)] hover:text-black transition duration-300 text-slate-300 border border-slate-800">🏠 DASHBOARD</a>
+        <a href="active-quests.html" class="px-4 py-2 text-xs sys-font sl-panel rounded hover:bg-[var(--sys-cyan)] hover:text-black transition duration-300 text-slate-300 border border-slate-800">⚔️ ACTIVE QUESTS</a>
+        <a href="brain-stats.html" class="px-4 py-2 text-xs sys-font sl-panel rounded hover:bg-[var(--sys-cyan)] hover:text-black transition duration-300 text-slate-300 border border-slate-800">🧠 BRAIN STATS</a>
+        <a href="system-logs.html" class="px-4 py-2 text-xs sys-font sl-panel rounded hover:bg-[var(--sys-cyan)] hover:text-black transition duration-300 text-slate-300 border border-slate-800">📊 SYSTEM LOGS</a>
+        <a href="monarch-ai.html" class="px-4 py-2 text-xs sys-font sl-panel rounded hover:bg-[var(--sys-cyan)] hover:text-black transition duration-300 text-slate-300 border border-slate-800">🤖 MONARCH AI</a>
+        <a href="operational-charter.html" class="px-4 py-2 text-xs sys-font bg-cyan-950/40 border border-[var(--sys-cyan)] text-[var(--sys-cyan)] rounded font-bold shadow-[0_0_10px_rgba(0,240,255,0.1)]">📜 CHARTER</a>
     </nav>
 
-    <!-- PROGRAM SWITCHER & TODAY PROTOCOL -->
-    <main class="grid grid-cols-1 xl:grid-cols-12 gap-6">
-
-        <!-- LEFT: Program Control & Today's Blocks -->
-        <aside class="xl:col-span-5 space-y-6">
-            <!-- Program Switcher -->
-            <div class="sl-panel p-5 animate-system-pop" style="animation-delay: 0.2s;">
-                <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
-                    <h2 class="text-sm font-black text-white sys-font tracking-widest">OPERATIONAL PROTOCOL SELECTOR</h2>
-                    <span class="text-[10px] text-slate-500 sys-font">ACTIVE DIRECTIVE</span>
+    <!-- PROGRAM SWITCHER -->
+    <div class="sl-panel p-5 animate-system-pop" style="animation-delay: 0.2s;">
+        <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
+            <h2 class="text-sm font-black text-white sys-font tracking-widest">OPERATIONAL PROTOCOL SELECTOR</h2>
+            <span class="text-[10px] text-slate-500 sys-font">ACTIVE DIRECTIVE</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button onclick="Charter.switch('week1')" id="btn-week1" class="sl-btn w-full text-left p-4 rounded flex justify-between items-center group">
+                <div>
+                    <span class="sys-font text-sm font-black text-white group-hover:text-[var(--sys-cyan)] block">📜 CHARTER v1.0 — Foundation</span>
+                    <span class="text-[10px] text-slate-400">الميثاق التشغيلي المتكامل (المستويات 1-450)</span>
                 </div>
-
-                <div class="space-y-3">
-                    <button onclick="ProgramManager.switch('week1')" id="btn-week1" class="sl-btn w-full text-left p-3 rounded flex justify-between items-center group">
-                        <div>
-                            <span class="sys-font text-sm font-black text-white group-hover:text-[var(--sys-cyan)] block">📜 CHARTER v1.0 — Foundation</span>
-                            <span class="text-[10px] text-slate-400">الميثاق التشغيلي المتكامل (المستويات 1-450)</span>
-                        </div>
-                        <span class="sys-font text-[10px] bg-cyan-950 text-[var(--sys-cyan)] px-2 py-0.5 border border-[var(--sys-cyan)]">WEEK 1</span>
-                    </button>
-
-                    <button onclick="ProgramManager.switch('week2')" id="btn-week2" class="sl-btn-purple sl-btn w-full text-left p-3 rounded flex justify-between items-center group">
-                        <div>
-                            <span class="sys-font text-sm font-black text-white group-hover:text-[var(--sys-purple)] block">🌌 SYSTEM v8.0 — Infinity</span>
-                            <span class="text-[10px] text-slate-400">تحديث النظام النسخة 8.0 (المستويات 450→∞)</span>
-                        </div>
-                        <span class="sys-font text-[10px] bg-purple-950 text-[var(--sys-purple)] px-2 py-0.5 border border-[var(--sys-purple)]">WEEK 2</span>
-                    </button>
+                <span class="sys-font text-[10px] bg-cyan-950 text-[var(--sys-cyan)] px-2 py-0.5 border border-[var(--sys-cyan)]">WEEK 1</span>
+            </button>
+            <button onclick="Charter.switch('week2')" id="btn-week2" class="sl-btn-purple sl-btn w-full text-left p-4 rounded flex justify-between items-center group">
+                <div>
+                    <span class="sys-font text-sm font-black text-white group-hover:text-[var(--sys-purple)] block">🌌 SYSTEM v8.0 — Infinity</span>
+                    <span class="text-[10px] text-slate-400">تحديث النظام النسخة 8.0 (المستويات 450→∞)</span>
                 </div>
+                <span class="sys-font text-[10px] bg-purple-950 text-[var(--sys-purple)] px-2 py-0.5 border border-[var(--sys-purple)]">WEEK 2</span>
+            </button>
+        </div>
+        <div id="infinity-message" class="hidden mt-4 p-3 bg-cyan-950/40 border border-[var(--sys-cyan)] rounded animate-pulse text-center">
+            <span class="text-[var(--sys-cyan)] font-bold sys-font text-xs block mb-1">[SYSTEM: SOVEREIGN AUTONOMY ACTIVATED]</span>
+            <span class="text-white text-sm font-bold">الآن يمكنك تدبر أمورك بنفسك وقراراتك الآن. هذا هو التحسين الأخير للنظام.</span>
+        </div>
+    </div>
 
-                <div id="program-message" class="mt-4 p-3 bg-slate-950/60 border border-slate-800 rounded text-xs text-slate-400 leading-relaxed hidden">
-                    <!-- Dynamic system message for level 450+ -->
-                </div>
+    <!-- TODAY'S PROTOCOL -->
+    <div class="sl-panel p-5 animate-system-pop" style="animation-delay: 0.3s; border-color: rgba(16, 185, 129, 0.4);">
+        <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
+            <h2 class="text-sm font-black text-emerald-400 sys-font tracking-widest flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                TODAY'S PROTOCOL
+            </h2>
+            <span id="current-day-label" class="text-[10px] text-slate-500 sys-font bg-slate-900 px-2 py-1 rounded border border-slate-800">SUNDAY</span>
+        </div>
+        <div id="day-summary" class="mb-4 p-3 bg-slate-950/60 border border-slate-800 rounded"></div>
+        <div id="today-schedule-container" class="space-y-2 max-h-[500px] overflow-y-auto pr-1"></div>
+    </div>
+
+    <!-- WEEKLY MATRIX -->
+    <div class="sl-panel p-5 animate-system-pop" style="animation-delay: 0.4s;">
+        <h2 class="text-sm font-black text-white sys-font tracking-widest mb-4 border-b border-slate-800 pb-3">📅 WEEKLY MATRIX — مصفوفة التوزيع الأسبوعي</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left border-collapse">
+                <thead>
+                    <tr class="text-slate-400 sys-font border-b border-slate-800">
+                        <th class="p-3">اليوم</th>
+                        <th class="p-3">الرياضة الجماعية</th>
+                        <th class="p-3">كتلة الجري</th>
+                        <th class="p-3">التركيز الذهني / التقني</th>
+                        <th class="p-3">PPL &amp; التركيز العضلي</th>
+                    </tr>
+                </thead>
+                <tbody id="weekly-matrix-body" class="text-slate-200"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- SPECIAL DAYS -->
+    <div id="special-days-container" class="space-y-6 animate-system-pop" style="animation-delay: 0.5s;"></div>
+
+    <!-- SOVEREIGN LAWS -->
+    <div class="sl-panel p-6 border-l-4 border-emerald-500 animate-system-pop" style="animation-delay: 0.6s;">
+        <h3 class="text-lg font-bold text-white mb-4">⚖️ قوانين الاشتباك السيادية</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-slate-950/60 p-4 rounded border border-slate-800">
+                <h4 class="text-emerald-400 font-bold text-sm mb-2">1. لا توجد عقوبات</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">تم إلغاء نظام خصم نقاط الـ XP عند تأجيل المهام. التقدم يعتمد كلياً على الإنجاز الإيجابي فقط.</p>
             </div>
-
-            <!-- Today's Sovereign Schedule -->
-            <div class="sl-panel p-5 animate-system-pop" style="animation-delay: 0.3s; border-color: rgba(16, 185, 129, 0.4);">
-                <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
-                    <h2 class="text-sm font-black text-emerald-400 sys-font tracking-widest flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        TODAY'S PROTOCOL
-                    </h2>
-                    <span id="current-day-label" class="text-[10px] text-slate-500 sys-font bg-slate-900 px-2 py-1 rounded border border-slate-800">SUNDAY</span>
-                </div>
-
-                <div id="today-schedule-container" class="space-y-2 max-h-[400px] overflow-y-auto pr-1">
-                    <!-- Injected by JS -->
-                </div>
+            <div class="bg-slate-950/60 p-4 rounded border border-slate-800">
+                <h4 class="text-emerald-400 font-bold text-sm mb-2">2. بساطة التوثيق</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">لا روابط خارجية إجبارية. التوثيق يتم بإضافة المهمة وإتمامها ببساطة للحصول على المكافآت النقية.</p>
             </div>
-        </aside>
-
-        <!-- RIGHT: Logs Archive -->
-        <section class="xl:col-span-7 space-y-6">
-            <!-- Stats Cards -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 animate-system-pop" style="animation-delay: 0.4s;">
-                <div class="sl-panel p-4 border-t-2 border-t-[var(--sys-cyan)]">
-                    <div class="text-slate-400 text-[10px] uppercase tracking-wider mb-1 sys-font">Total Logs</div>
-                    <div id="stat-total" class="text-3xl font-black text-white sys-font">0</div>
-                </div>
-                <div class="sl-panel p-4 border-t-2 border-t-[var(--sys-gold)]">
-                    <div class="text-slate-400 text-[10px] uppercase tracking-wider mb-1 sys-font">Quests</div>
-                    <div id="stat-quests" class="text-3xl font-black text-white sys-font">0</div>
-                </div>
-                <div class="sl-panel p-4 border-t-2 border-t-[var(--sys-purple)]">
-                    <div class="text-slate-400 text-[10px] uppercase tracking-wider mb-1 sys-font">System</div>
-                    <div id="stat-system" class="text-3xl font-black text-white sys-font">0</div>
-                </div>
-                <div class="sl-panel p-4 border-t-2 border-t-[var(--sys-red)]">
-                    <div class="text-slate-400 text-[10px] uppercase tracking-wider mb-1 sys-font">Alerts</div>
-                    <div id="stat-errors" class="text-3xl font-black text-white sys-font">0</div>
-                </div>
+            <div class="bg-slate-950/60 p-4 rounded border border-slate-800">
+                <h4 class="text-emerald-400 font-bold text-sm mb-2">3. الهيمنة التلقائية</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">يتولى النظام قياس إحصائياتك (Brain Stats) تلقائياً عبر مُحلل الكلمات الذكي بناءً على تصنيف المهام.</p>
             </div>
-
-            <!-- Logs Control Panel -->
-            <div class="sl-panel p-0 overflow-hidden flex flex-col min-h-[500px] animate-system-pop" style="animation-delay: 0.5s;">
-                <div class="bg-slate-950/50 p-4 border-b border-slate-800 flex flex-wrap gap-2 items-center justify-between">
-                    <div class="flex flex-wrap gap-2" id="filterContainer">
-                        <button class="filter-btn active px-4 py-1.5 rounded-full border border-slate-600 text-xs font-bold text-slate-300 hover:border-[var(--sys-cyan)] transition sys-font" data-filter="all">ALL</button>
-                        <button class="filter-btn px-4 py-1.5 rounded-full border border-slate-600 text-xs font-bold text-slate-300 hover:border-[var(--sys-gold)] transition sys-font" data-filter="quest">QUESTS</button>
-                        <button class="filter-btn px-4 py-1.5 rounded-full border border-slate-600 text-xs font-bold text-slate-300 hover:border-[var(--sys-cyan)] transition sys-font" data-filter="system">SYSTEM</button>
-                        <button class="filter-btn px-4 py-1.5 rounded-full border border-slate-600 text-xs font-bold text-slate-300 hover:border-[var(--sys-purple)] transition sys-font" data-filter="level">LEVEL UP</button>
-                        <button class="filter-btn px-4 py-1.5 rounded-full border border-slate-600 text-xs font-bold text-slate-300 hover:border-[var(--sys-red)] transition sys-font" data-filter="error">ALERTS</button>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="LogManager.exportLogs()" class="px-3 py-1.5 bg-slate-900 border border-[var(--sys-cyan)] text-[var(--sys-cyan)] rounded hover:bg-[var(--sys-cyan)] hover:text-black transition text-xs font-bold sys-font flex items-center gap-1">
-                            <span>⬇</span> EXPORT
-                        </button>
-                        <button onclick="LogManager.clearLogs()" class="px-3 py-1.5 bg-slate-900 border border-rose-500/50 text-rose-400 hover:bg-rose-500 hover:text-white transition text-xs font-bold sys-font flex items-center gap-1">
-                            <span>✕</span> CLEAR
-                        </button>
-                    </div>
-                </div>
-
-                <div id="logsContainer" class="p-3 flex-1 overflow-y-auto space-y-2 bg-[#02040a]/40">
-                    <!-- Logs injected here -->
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </div>
 
     <footer class="text-center text-[10px] text-slate-600 mt-8 sys-font uppercase tracking-widest pb-4">
-        Sovereign Core Intellect Layer Ver 9.0 | Protocol Monitor Active | No Penalties Enforced
+        Sovereign Core Intellect Layer | Operational Charter v8.0 | No Penalties Enforced
     </footer>
 </div>
-
-<!-- Toast Container -->
-<div id="toastContainer" class="fixed top-5 right-5 z-[10000] flex flex-col gap-3 pointer-events-none"></div>
 
 <script>
     // ==========================================
 // SOVEREIGN TIME ENGINE - المحرك الزمني السيادي
 // ==========================================
-
+const SovereignTimeUtils = {
+    getLogicalDayIndex() {
+        const now = new Date();
+        const hours = now.getHours();
+        let dayIdx = now.getDay();
+        if (hours >= 0 && hours < 3) {
+            dayIdx = (dayIdx - 1 + 7) % 7; 
+        }
+        return dayIdx;
+    }
+};
 // ==========================================
-// SOVEREIGN PROGRAM DATA (08.txt & 09.txt)
+// PROGRAM DATA (Extracted from 08.txt & 09.txt)
 // ==========================================
 const PROGRAM_DATA = {
-    week1: {
-        id: 'week1',
-        title: 'الميثاق التشغيلي المتكامل',
-        version: 'v1.0',
-        range: 'LVL 1 → 450',
-        desc: 'المرحلة التأسيسية: بناء القاعدة البرمجية والبدنية والروحية.',
-        schedule: [
-            { start: 5.0,  end: 6.0,  title: 'الكتلة الروحية',         desc: 'صلاة الفجر + الأذكار + تلاوة + مراجعة/حفظ' },
-            { start: 6.0,  end: 8.5,  title: 'البرمجة العميقة',        desc: 'مشروع AiMoha (Python/JS) — بناء البنية التحتية' },
-            { start: 8.5,  end: 10.5, title: 'أكاديمية الذكاء الاصطناعي', desc: 'ML, LLMs, خوارزميات التعلم الآلي' },
-            { start: 10.5, end: 12.0, title: 'إتقان اللغة الإنجليزية',   desc: 'انغماس تقني + Shadowing + مفردات متقدمة' },
-            { start: 12.0, end: 13.0, title: 'الاستراحة الكبرى',       desc: 'صلاة الظهر + غداء بروتيني مكثف' },
-            { start: 13.0, end: 15.0, title: 'المعمل التطبيقي',        desc: 'مشاريع AI حقيقية وتكامل الأنظمة البرمجية' },
-            { start: 15.0, end: 16.5, title: 'الإعداد البدني PPL',     desc: 'Push / Pull / Legs + كاليسثنكس' },
-            { start: 16.5, end: 17.5, title: 'كتلة الجري',             desc: 'جري هوائي منتظم (ساعة كاملة)' },
-            { start: 17.5, end: 19.5, title: 'التركيز الأكاديمي',      desc: 'رياضيات/علوم/فيزياء + درس الشيخ الرسلان' },
-            { start: 19.5, end: 20.5, title: 'الرياضة الجماعية',       desc: 'مباريات كرة السلة أو القدم التنافسية' },
-            { start: 20.5, end: 21.5, title: 'الارتقاء الذهني',        desc: 'كتب تطوير + ألعاب فكرية + ديتوكس' },
-            { start: 21.5, end: 22.0, title: 'تجهيز النظام',           desc: 'تخطيط الغد + أذكار النوم + إغلاق كامل' }
-        ],
-        days: {
-            0: { sport: '🏀 كرة السلة', ppl: 'Pull (عقلة انفجارية)', cognitive: 'برمجة + AI', running: 'ساعة' },
-            1: { sport: '🥊 مواي تاي', ppl: 'Legs (قفز)', cognitive: 'شطرنج (استراتيجية)', running: 'ساعة' },
-            2: { sport: '🏀 كرة السلة', ppl: 'Push (ثبات اليدين)', cognitive: 'برمجة + AI', running: 'ساعة' },
-            3: { sport: '⚽ كرة القدم', ppl: 'Pull & Abs/Triceps', cognitive: 'سودوكو صعبة', running: 'ساعة' },
-            4: { sport: '🥋 BJJ', ppl: 'Legs مكثفة', cognitive: 'دراسة شرعية', running: 'ساعة ونصف' },
-            5: { sport: '🚶 مشي هادئ', ppl: 'Push', cognitive: 'Dual N-Back + كتاب رقمي', running: 'ساعة' },
-            6: { sport: '⚽ كرة القدم', ppl: 'Six Pack Abs + Triceps', cognitive: 'قرصنة أخلاقية', running: 'ساعة ونصف' }
-        },
-        special: {
-            4: { // Thursday
-                title: 'خميس الإنجاز',
-                blocks: [
-                    { time: '05:00-06:30', title: 'الكتلة الروحية', desc: 'تكرار ومراجعة القرآن الكريم' },
-                    { time: '06:30-09:30', title: 'العلوم الشرعية', desc: 'التوحيد + رياض الصالحين + التجويد + البداية والنهاية' },
-                    { time: '09:30-11:30', title: 'ماراثون الحفظ', desc: 'تاريخ/جغرافيا/إسلامية بخرائط ذهنية' },
-                    { time: '11:30-13:30', title: 'المهارات اللغوية', desc: 'فرنسية/عربية/إنجليزية (معالجة القواعد كمنطق برامجي)' },
-                    { time: '13:30-15:00', title: 'التقنية والنمو', desc: 'تطوير مواقع وربح منها' },
-                    { time: '15:00-16:30', title: 'الحمل البدني', desc: 'Legs مكثفة + قفز عالي + تمارين ارتدادية' },
-                    { time: '16:30-18:30', title: 'إتقان اللغات', desc: 'مراجعة مفردات اللغة الإنجليزية' },
-                    { time: '18:30-19:30', title: 'صناعة المحتوى', desc: 'YouTube: Onyx Apex + ren gaming + تلاوات' },
-                    { time: '19:30-21:00', title: 'الجري الطويل', desc: 'ساعة ونصف متواصلة من الجري في الهواء الطلق' },
-                    { time: '21:00-22:00', title: 'الروحانيات', desc: 'استماع قرآن + تدبر + تحسين نبرة الصوت' },
-                    { time: '22:00-23:00', title: 'الارتقاء الذهني', desc: 'قراءة كتب تطوير الذات + ديتوكس الدوبامين' }
-                ]
-            },
-            5: { // Friday
-                title: 'جمعة الإبداع',
-                blocks: [
-                    { time: '05:00-08:00', title: 'المراجعة الروحية', desc: 'سورة الكهف + أذكار + مراجعة علوم طبيعية' },
-                    { time: '08:00-10:30', title: 'الإنتاج المرئي', desc: 'تعديل فيديو احترافي للمحتوى البصري' },
-                    { time: '10:30-14:30', title: 'البرمجة العميقة', desc: '4 ساعات برمجة + مراقبة مشاريع + بناء مواقع' },
-                    { time: '14:30-16:00', title: 'الذكاء السائل', desc: 'Dual N-Back + مشي هادئ + كتاب رقمي (تدقيق)' },
-                    { time: '16:00-17:00', title: 'الجري الهوائي', desc: 'ساعة كاملة من الجري بانتظام' },
-                    { time: '17:00-18:00', title: 'التحسين التقني', desc: 'مراجعة أكواد ومستودعات المشاريع' },
-                    { time: '20:30-21:30', title: 'الارتقاء الذهني', desc: 'قراءة كتب تطوير الذات + ديتوكس' }
-                ]
-            },
-            6: { // Saturday
-                title: 'سبت الإتقان',
-                blocks: [
-                    { time: '05:00-10:00', title: 'الأكاديمية والروح', desc: 'مراجعة فيزياء + قرآن جديد (5 ساعات متواصلة)' },
-                    { time: '10:00-14:00', title: 'الأمن التقني', desc: 'قرصنة أخلاقية + إنجليزية (4 ساعات متواصلة)' },
-                    { time: '14:00-15:00', title: 'التدبر الصوتي', desc: 'استماع قرآن + تحسين نبرة الصوت' },
-                    { time: '15:00-16:30', title: 'الجري الانفجاري', desc: 'ساعة ونصف جري مقسم بين سرعة وانتظام' },
-                    { time: '16:30-17:00', title: 'الاستشفاء', desc: 'تناول مغذيات دقيقة (كالسيوم/مغنيسيوم)' },
-                    { time: '17:00-18:30', title: 'المباراة الكاملة', desc: 'كرة القدم: مباراة تنافسية حقيقية (تفريغ الطاقة)' },
-                    { time: '18:30-19:30', title: 'الأنظمة البرمجية', desc: 'مراقبة مشاريع مطورة + تطوير مواقع' },
-                    { time: '19:30-20:30', title: 'معايرة الأنظمة', desc: 'تقييم أسبوعي متكامل + مراجعة الأداء' },
-                    { time: '20:30-21:30', title: 'التخطيط التكتيكي', desc: 'تحديث قائمة المهام الصعبة للأسبوع القادم' },
-                    { time: '21:30-23:00', title: 'نظام التحفيز الأقصى', desc: 'تمارين طول + شوفان/شعير + نوم 10 ساعات' }
-                ]
-            }
-        }
+  week1: {
+    id: 'week1',
+    title: 'الميثاق التشغيلي المتكامل',
+    version: 'v1.0',
+    range: 'LVL 1 → 450',
+    schedule: [
+      { start: 5.0,  end: 6.0,  title: 'الكتلة الروحية',         desc: 'صلاة الفجر + الأذكار + تلاوة + مراجعة/حفظ' },
+      { start: 6.0,  end: 8.5,  title: 'البرمجة العميقة',        desc: 'مشروع AiMoha (Python/JS) — بناء البنية التحتية' },
+      { start: 8.5,  end: 10.5, title: 'أكاديمية الذكاء الاصطناعي', desc: 'ML, LLMs, خوارزميات التعلم الآلي' },
+      { start: 10.5, end: 12.0, title: 'إتقان اللغة الإنجليزية',   desc: 'انغماس تقني + Shadowing + مفردات متقدمة' },
+      { start: 12.0, end: 13.0, title: 'الاستراحة الكبرى',       desc: 'صلاة الظهر + غداء بروتيني مكثف' },
+      { start: 13.0, end: 15.0, title: 'المعمل التطبيقي',        desc: 'مشاريع AI حقيقية وتكامل الأنظمة البرمجية' },
+      { start: 15.0, end: 16.5, title: 'الإعداد البدني PPL',     desc: 'Push / Pull / Legs + كاليسثينكس' },
+      { start: 16.5, end: 17.5, title: 'كتلة الجري',             desc: 'جري هوائي منتظم (ساعة كاملة)' },
+      { start: 17.5, end: 19.5, title: 'التركيز الأكاديمي',      desc: 'رياضيات/علوم/فيزياء + درس الشيخ الرسلان' },
+      { start: 19.5, end: 20.5, title: 'الرياضة الجماعية',       desc: 'مباريات كرة السلة أو القدم التنافسية' },
+      { start: 20.5, end: 21.5, title: 'الارتقاء الذهني',        desc: 'كتب تطوير + ألعاب فكرية + ديتوكس الدوبامين' },
+      { start: 21.5, end: 22.0, title: 'تجهيز النظام',           desc: 'تخطيط الغد + أذكار النوم + إغلاق كامل' }
+    ],
+    days: {
+      0: { sport: '🏀 كرة السلة', ppl: 'Pull (عقلة انفجارية)', cognitive: 'إنشاء كتاب رقمي (جلسة 1)', running: 'ساعة (16:30-17:30)' },
+      1: { sport: '🥊 مواي تاي', ppl: 'Legs (قفز)', cognitive: 'شطرنج + وثائقي', running: 'ساعة (16:30-17:30)' },
+      2: { sport: '🏀 كرة السلة', ppl: 'Push (ثبات اليدين)', cognitive: 'قراءة + ديتوكس', running: 'ساعة (16:30-17:30)' },
+      3: { sport: '⚽ كرة القدم', ppl: 'Pull & Abs/Triceps', cognitive: 'سودوكو صعبة + وثائقي', running: 'ساعة (16:30-17:30)' },
+      4: { sport: '🥋 BJJ', ppl: 'Six Pack Abs + Triceps', cognitive: 'قراءة + ديتوكس', running: 'ساعة ونصف' },
+      5: { sport: '🚶 مشي هادئ', ppl: 'Push (Chest & Shoulders)', cognitive: 'Dual N-Back + كتاب رقمي', running: 'ساعة (16:30-17:30)' },
+      6: { sport: '⚽ كرة القدم', ppl: 'Six Pack Abs + Triceps', cognitive: 'تقييم أسبوعي', running: 'ساعة ونصف' }
     },
-    week2: {
-        id: 'week2',
-        title: 'تحديث النظام النسخة 8.0',
-        version: '∞ Infinity',
-        range: 'LVL 450 → ∞',
-        desc: 'مرحلة السيادة الكاملة: دمج منطق الشطرنج في AI Agents، الجري الانفجاري، والعمليات التكتيكية المستقلة.',
-        schedule: [
-            { start: 2.75, end: 5.0,  title: 'صلاة الليل والسحور',     desc: 'قيام + سحور بروتيني + أذكار + مراجعة ذهنية' },
-            { start: 5.0,  end: 6.0,  title: 'الكتلة الروحية',         desc: 'فجر + أذكار + تلاوة (فردي: مراجعة / زوجي: حفظ جديد)' },
-            { start: 6.0,  end: 8.5,  title: 'البرمجة العميقة',        desc: 'AiMoha (Python/JS) — دمج منطق الشطرنج في AI Agents' },
-            { start: 8.5,  end: 10.5, title: 'أكاديمية الذكاء الاصطناعي', desc: 'ML متقدم + LLMs + تطبيق خوارزميات' },
-            { start: 10.5, end: 12.0, title: 'إتقان اللغة الإنجليزية',   desc: 'Lex Fridman Podcast + مصطلحات تقنية + Shadowing' },
-            { start: 12.0, end: 13.0, title: 'الاستراحة الكبرى',       desc: 'ظهر + غداء بروتيني مكثف' },
-            { start: 13.0, end: 15.0, title: 'المعمل التطبيقي',        desc: 'مشاريع AI حقيقية + تكامل أنظمة برمجية' },
-            { start: 15.0, end: 16.5, title: 'الإعداد البدني PPL',     desc: 'Push(Handstand)/Pull(Explosive)/Legs(قفز) + كاليسثنكس' },
-            { start: 16.5, end: 17.5, title: 'كتلة الجري المكثف',      desc: 'ساعة جري (تفعيل قانون وولف + HGH مضاعف)' },
-            { start: 17.5, end: 19.5, title: 'التركيز الأكاديمي',      desc: 'رياضيات/علوم/فيزياء + درس الرسلان + عشاء خفيف' },
-            { start: 19.5, end: 20.5, title: 'المنافسات الجماعية',     desc: 'مباريات كاملة: سلة/قدم (تنافس قوي دون تهاون)' },
-            { start: 20.5, end: 21.5, title: 'الارتقاء الذهني',        desc: 'شطرنج/سودوكو + كتب رقمية + وثائقي تقني' },
-            { start: 21.5, end: 22.0, title: 'تجهيز النظام',           desc: 'تخطيط الغد + أذكار نوم + إغلاق كامل (7-9 ساعات)' }
-        ],
-        days: {
-            0: { sport: '🏀 كرة السلة (مباريات كاملة)', ppl: 'Pull (عقلة انفجارية)', cognitive: 'برمجة + AI (شطرنج)', running: 'ساعة' },
-            1: { sport: '🥊 مواي تاي', ppl: 'Legs (قفز / وولف)', cognitive: 'شطرنج (AI Agents)', running: 'ساعة' },
-            2: { sport: '🏀 كرة السلة (مباريات كاملة)', ppl: 'Push (ثبات اليدين)', cognitive: 'برمجة + AI', running: 'ساعة' },
-            3: { sport: '⚽ كرة القدم (مباريات كاملة)', ppl: 'Pull & Abs/Triceps', cognitive: 'سودوكو صعبة (تتبع أخطاء)', running: 'ساعة' },
-            4: { sport: '🥋 BJJ', ppl: 'Legs مكثفة (قفز)', cognitive: 'شريعة (توحيد/رياض/تجويد)', running: 'ساعة ونصف (19:30-21:00)' },
-            5: { sport: '🚶 مشي هادئ للاستشفاء', ppl: 'Push (Handstand)', cognitive: 'Dual N-Back + كتاب رقمي (تدقيق)', running: 'ساعة (16:00-17:00)' },
-            6: { sport: '⚽ كرة القدم (مباريات كاملة)', ppl: 'Six Pack Abs + Triceps', cognitive: 'قرصنة أخلاقية + معايرة', running: 'ساعة ونصف (15:00-16:30)' }
-        },
-        special: {
-            4: { // Thursday
-                title: 'خميس الإنجاز — البروتوكول المُحسّن',
-                blocks: [
-                    { time: '05:00-06:30', title: 'الكتلة الروحية', desc: 'تكرار ومراجعة القرآن (ساعة ونصف)' },
-                    { time: '06:30-09:30', title: 'العلوم الشرعية والتاريخ', desc: 'التوحيد + رياض الصالحين + تجويد + البداية والنهاية (3 ساعات)' },
-                    { time: '09:30-11:30', title: 'ماراثون الحفظ', desc: 'منهج التاريخ والجغرافيا + العلوم الإسلامية (خرائط ذهنية)' },
-                    { time: '11:30-13:30', title: 'المهارات اللغوية', desc: 'فرنسية/عربية/إنجليزية (معالجة القواعد كمنطق برامجي)' },
-                    { time: '13:30-15:00', title: 'التقنية والنمو', desc: 'تطوير مواقع وربح منها (ساعة ونصف)' },
-                    { time: '15:00-16:30', title: 'الحمل البدني الإضافي', desc: 'Legs مكثفة + قفز عالي + تمارين ارتدادية (ساعة ونصف)' },
-                    { time: '16:30-18:30', title: 'إتقان اللغات', desc: 'مراجعة مفردات إنجليزية تقنية (ساعتان)' },
-                    { time: '18:30-19:30', title: 'صناعة المحتوى الصريحة', desc: 'YouTube: Onyx Apex + ren gaming + تلاوات (تصوير + خطافات)' },
-                    { time: '19:30-21:00', title: 'كتلة الجري الطويل', desc: 'ساعة ونصف متواصلة (ضغط عظمي ميكانيكي + سعة هوائية)' },
-                    { time: '21:00-22:00', title: 'الروحانيات وتحسين الصوت', desc: 'استماع قرآن + تدبر + تحسين النبرة الصوتية' },
-                    { time: '22:00-23:00', title: 'الارتقاء الذهني الشامل', desc: 'قراءة تطوير ذات + ديتوكس الدوبامين (دوباميكافين)' }
-                ]
-            },
-            5: { // Friday
-                title: 'جمعة الإبداع — الإنتاج المرئي والذكاء السائل',
-                blocks: [
-                    { time: '05:00-08:00', title: 'المراجعة الروحية والأكاديمية', desc: 'الكهف + أذكار + مراجعة شاملة للعلوم الطبيعية' },
-                    { time: '08:00-10:30', title: 'الإنتاج المرئي', desc: 'تعديل فيديو احترافي (ساعتان ونصف)' },
-                    { time: '10:30-14:30', title: 'كتلة البرمجة العميقة', desc: '4 ساعات: برمجة + مراقبة مشاريع + بناء مواقع + ربح' },
-                    { time: '14:30-16:00', title: 'المخرجات والذكاء السائل', desc: 'Dual N-Back مكثف (20 دقيقة) + مشي + كتاب رقمي (تدقيق نهائي)' },
-                    { time: '16:00-17:00', title: 'كتلة الجري الهوائي', desc: 'ساعة جري (تعويض النشاط الملغى بنشاط بناء)' },
-                    { time: '17:00-18:00', title: 'التحسين التقني', desc: 'مراجعة مستودعات الأكواد + توثيق المشاريع' },
-                    { time: '20:30-21:30', title: 'الارتقاء الذهني', desc: 'قراءة كتب تطوير الذات + ديتوكس كامل' }
-                ]
-            },
-            6: { // Saturday
-                title: 'سبت الإتقان — الأمن التقني والمباراة الكاملة',
-                blocks: [
-                    { time: '05:00-10:00', title: 'الأكاديمية والروح', desc: 'مراجعة فيزياء + قرآن جديد (5 ساعات متواصلة)' },
-                    { time: '10:00-14:00', title: 'الأمن التقني واللغات', desc: 'قرصنة أخلاقية + إنجليزية (4 ساعات متواصلة)' },
-                    { time: '14:00-15:00', title: 'التدبر الصوتي', desc: 'استماع قرآن + تدبر + تحسين النبرة' },
-                    { time: '15:00-16:30', title: 'كتلة الجري الانفجاري', desc: 'ساعة ونصف: sprint/interval (تحفيز النمو العظمي)' },
-                    { time: '16:30-17:00', title: 'الاستشفاء والترطيب', desc: 'مغذيات دقيقة لتجنب الإجهاد (Ca/Mg/Zn)' },
-                    { time: '17:00-18:30', title: 'الأداء الرياضي التنافسي', desc: 'كرة القدم: مباراة جماعية كاملة (ذكاء حركي + تفريغ طاقة)' },
-                    { time: '18:30-19:30', title: 'الأنظمة البرمجية', desc: 'مراقبة مشاريع + تطوير مواقع' },
-                    { time: '19:30-20:30', title: 'معايرة الأنظمة', desc: 'تطوير ذات + تقييم أسبوعي متكامل' },
-                    { time: '20:30-21:30', title: 'التخطيط التكتيكي', desc: 'تحديث مهام الأسبوع القادم' },
-                    { time: '21:30-23:00', title: 'نظام التحفيز الأقصى للنمو', desc: 'تمارين طول (تعلق/سباحة/سلة) + شوفان/شعير + نوم محسّن' }
-                ]
-            }
-        }
+    special: {
+      4: {
+        title: 'خميس الإنجاز',
+        blocks: [
+          { time: '05:00-06:30', title: 'الكتلة الروحية', desc: 'تكرار ومراجعة القرآن الكريم (ساعة ونصف)' },
+          { time: '06:30-09:30', title: 'العلوم الشرعية', desc: 'التوحيد + رياض الصالحين + تجويد + البداية والنهاية (3 ساعات)' },
+          { time: '09:30-11:30', title: 'ماراثون الحفظ', desc: 'تاريخ/جغرافيا/إسلامية بخرائط ذهنية' },
+          { time: '11:30-13:30', title: 'المهارات اللغوية', desc: 'فرنسية/عربية/إنجليزية (معالجة القواعد كمنطق برامجي)' },
+          { time: '13:30-15:00', title: 'التقنية والنمو', desc: 'تطوير مواقع وربح منها' },
+          { time: '15:00-16:30', title: 'الحمل البدني', desc: 'Legs مكثفة + قفز عالي + تمارين ارتدادية' },
+          { time: '16:30-18:30', title: 'إتقان اللغات', desc: 'مراجعة مفردات اللغة الإنجليزية' },
+          { time: '18:30-19:30', title: 'صناعة المحتوى', desc: 'YouTube: Onyx Apex + ren gaming + تلاوات (تصوير + خطافات)' },
+          { time: '19:30-21:00', title: 'الجري الطويل', desc: 'ساعة ونصف متواصلة من الجري في الهواء الطلق' },
+          { time: '21:00-22:00', title: 'الروحانيات', desc: 'استماع قرآن + تدبر + تحسين نبرة الصوت' },
+          { time: '22:00-23:00', title: 'الارتقاء الذهني', desc: 'قراءة كتب تطوير الذات + ديتوكس الدوبامين' }
+        ]
+      },
+      5: {
+        title: 'جمعة الإبداع',
+        blocks: [
+          { time: '05:00-08:00', title: 'المراجعة الروحية', desc: 'سورة الكهف + أذكار + مراجعة علوم طبيعية' },
+          { time: '08:00-10:30', title: 'الإنتاج المرئي', desc: 'تعديل فيديو احترافي للمحتوى البصري' },
+          { time: '10:30-14:30', title: 'البرمجة العميقة', desc: '4 ساعات برمجة + مراقبة مشاريع + بناء مواقع' },
+          { time: '14:30-16:00', title: 'الذكاء السائل', desc: 'Dual N-Back مكثف (20 دقيقة) + مشي هادئ + كتاب رقمي (تدقيق)' },
+          { time: '16:00-17:00', title: 'الجري الهوائي', desc: 'ساعة كاملة من الجري بانتظام' },
+          { time: '17:00-18:00', title: 'التحسين التقني', desc: 'مراجعة أكواد ومستودعات المشاريع' },
+          { time: '20:30-21:30', title: 'الارتقاء الذهني', desc: 'قراءة كتب تطوير الذات + ديتوكس كامل' }
+        ]
+      },
+      6: {
+        title: 'سبت الإتقان',
+        blocks: [
+          { time: '05:00-10:00', title: 'الأكاديمية والروح', desc: 'مراجعة فيزياء + قرآن جديد (5 ساعات متواصلة)' },
+          { time: '10:00-14:00', title: 'الأمن التقني', desc: 'قرصنة أخلاقية + إنجليزية (4 ساعات متواصلة)' },
+          { time: '14:00-15:00', title: 'التدبر الصوتي', desc: 'استماع قرآن + تحسين نبرة الصوت' },
+          { time: '15:00-16:30', title: 'الجري الانفجاري', desc: 'ساعة ونصف جري مقسم بين سرعة وانتظام' },
+          { time: '16:30-17:00', title: 'الاستشفاء', desc: 'تناول مغذيات دقيقة (كالسيوم/مغنيسيوم)' },
+          { time: '17:00-18:30', title: 'المباراة الكاملة', desc: 'كرة القدم: مباراة تنافسية حقيقية (تفريغ الطاقة)' },
+          { time: '18:30-19:30', title: 'الأنظمة البرمجية', desc: 'مراقبة مشاريع مطورة + تطوير مواقع' },
+          { time: '19:30-20:30', title: 'معايرة الأنظمة', desc: 'تقييم أسبوعي متكامل + مراجعة الأداء' },
+          { time: '20:30-21:30', title: 'التخطيط التكتيكي', desc: 'تحديث قائمة المهام الصعبة للأسبوع القادم' },
+          { time: '21:30-23:00', title: 'نظام التحفيز الأقصى', desc: 'تمارين طول + شوفان/شعير + نوم 10 ساعات' }
+        ]
+      }
     }
+  },
+  week2: {
+    id: 'week2',
+    title: 'تحديث النظام 8.0 — Infinity',
+    version: '∞',
+    range: 'LVL 450 → ∞',
+    schedule: [
+      { start: 2.75, end: 5.0,  title: 'صلاة الليل والسحور',     desc: 'قيام + سحور بروتيني + أذكار + مراجعة ذهنية' },
+      { start: 5.0,  end: 6.0,  title: 'الكتلة الروحية',         desc: 'فجر + أذكار + تلاوة (فردي: مراجعة / زوجي: حفظ جديد)' },
+      { start: 6.0,  end: 8.5,  title: 'البرمجة العميقة',        desc: 'AiMoha (Python/JS) — دمج منطق الشطرنج في AI Agents' },
+      { start: 8.5,  end: 10.5, title: 'أكاديمية الذكاء الاصطناعي', desc: 'ML متقدم + LLMs + تطبيق خوارزميات' },
+      { start: 10.5, end: 12.0, title: 'إتقان اللغة الإنجليزية',   desc: 'Lex Fridman Podcast + مصطلحات تقنية + Shadowing' },
+      { start: 12.0, end: 13.0, title: 'الاستراحة الكبرى',       desc: 'ظهر + غداء بروتيني مكثف' },
+      { start: 13.0, end: 15.0, title: 'المعمل التطبيقي',        desc: 'مشاريع AI حقيقية + تكامل أنظمة برمجية' },
+      { start: 15.0, end: 16.5, title: 'الإعداد البدني PPL',     desc: 'Push(Handstand)/Pull(Explosive)/Legs(قفز) + كاليسثنكس' },
+      { start: 16.5, end: 17.5, title: 'كتلة الجري المكثف',      desc: 'ساعة جري (تفعيل قانون وولف + HGH مضاعف)' },
+      { start: 17.5, end: 19.5, title: 'التركيز الأكاديمي',      desc: 'رياضيات/علوم/فيزياء + درس الرسلان + عشاء خفيف' },
+      { start: 19.5, end: 20.5, title: 'المنافسات الجماعية',     desc: 'مباريات كاملة: سلة/قدم (تنافس قوي دون تهاون)' },
+      { start: 20.5, end: 21.5, title: 'الارتقاء الذهني',        desc: 'شطرنج/سودوكو + كتب رقمية + وثائقي تقني' },
+      { start: 21.5, end: 22.0, title: 'تجهيز النظام',           desc: 'تخطيط الغد + أذكار نوم + إغلاق كامل (7-9 ساعات)' }
+    ],
+    days: {
+      0: { sport: '🏀 كرة السلة (مباريات كاملة)', ppl: 'Pull (عقلة انفجارية)', cognitive: 'برمجة + AI (دمج منطق الشطرنج)', running: 'ساعة (16:30-17:30)' },
+      1: { sport: '🥊 مواي تاي', ppl: 'Legs (قفز / وولف)', cognitive: 'شطرنج (تحليل منطق AI Agents)', running: 'ساعة (16:30-17:30)' },
+      2: { sport: '🏀 كرة السلة (مباريات كاملة)', ppl: 'Push (ثبات اليدين Handstand)', cognitive: 'برمجة + AI', running: 'ساعة (16:30-17:30)' },
+      3: { sport: '⚽ كرة القدم (مباريات كاملة)', ppl: 'Pull & Abs/Triceps', cognitive: 'سودوكو صعبة (تتبع أخطاء)', running: 'ساعة (16:30-17:30)' },
+      4: { sport: '🥋 BJJ', ppl: 'Legs مكثفة (قفز)', cognitive: 'شريعة (توحيد/رياض/تجويد)', running: 'ساعة ونصف (19:30-21:00)' },
+      5: { sport: '🚶 مشي هادئ للاستشفاء', ppl: 'Push (Handstand)', cognitive: 'Dual N-Back + كتاب رقمي (تدقيق)', running: 'ساعة (16:00-17:00)' },
+      6: { sport: '⚽ كرة القدم (مباريات كاملة)', ppl: 'Six Pack Abs + Triceps', cognitive: 'قرصنة أخلاقية + معايرة', running: 'ساعة ونصف (15:00-16:30)' }
+    },
+    special: {
+      4: {
+        title: 'خميس الإنجاز — البروتوكول المُحسّن',
+        blocks: [
+          { time: '05:00-06:30', title: 'الكتلة الروحية', desc: 'تكرار ومراجعة القرآن (ساعة ونصف)' },
+          { time: '06:30-09:30', title: 'العلوم الشرعية والتاريخ', desc: 'التوحيد + رياض الصالحين + تجويد + البداية والنهاية (3 ساعات)' },
+          { time: '09:30-11:30', title: 'ماراثون الحفظ', desc: 'منهج التاريخ والجغرافيا + العلوم الإسلامية (خرائط ذهنية)' },
+          { time: '11:30-13:30', title: 'المهارات اللغوية', desc: 'فرنسية/عربية/إنجليزية (معالجة القواعد كمنطق برامجي)' },
+          { time: '13:30-15:00', title: 'التقنية والنمو', desc: 'تطوير مواقع وربح منها (ساعة ونصف)' },
+          { time: '15:00-16:30', title: 'الحمل البدني الإضافي', desc: 'Legs مكثفة + قفز عالي + تمارين ارتدادية (ساعة ونصف)' },
+          { time: '16:30-18:30', title: 'إتقان اللغات', desc: 'مراجعة مفردات إنجليزية تقنية (ساعتان)' },
+          { time: '18:30-19:30', title: 'صناعة المحتوى الصريحة', desc: 'YouTube: Onyx Apex + ren gaming + تلاوات (تصوير + خطافات)' },
+          { time: '19:30-21:00', title: 'كتلة الجري الطويل', desc: 'ساعة ونصف متواصلة (ضغط عظمي ميكانيكي + سعة هوائية)' },
+          { time: '21:00-22:00', title: 'الروحانيات وتحسين الصوت', desc: 'استماع قرآن + تدبر + تحسين النبرة الصوتية' },
+          { time: '22:00-23:00', title: 'الارتقاء الذهني الشامل', desc: 'قراءة تطوير ذات + ديتوكس الدوبامين (دوباميكافين)' }
+        ]
+      },
+      5: {
+        title: 'جمعة الإبداع — الإنتاج المرئي والذكاء السائل',
+        blocks: [
+          { time: '05:00-08:00', title: 'المراجعة الروحية والأكاديمية', desc: 'الكهف + أذكار + مراجعة شاملة للعلوم الطبيعية' },
+          { time: '08:00-10:30', title: 'الإنتاج المرئي', desc: 'تعديل فيديو احترافي (ساعتان ونصف)' },
+          { time: '10:30-14:30', title: 'كتلة البرمجة العميقة', desc: '4 ساعات: برمجة + مراقبة مشاريع + بناء مواقع + ربح' },
+          { time: '14:30-16:00', title: 'المخرجات والذكاء السائل', desc: 'Dual N-Back مكثف (20 دقيقة) + مشي + كتاب رقمي (تدقيق نهائي)' },
+          { time: '16:00-17:00', title: 'كتلة الجري الهوائي', desc: 'ساعة جري (تعويض النشاط الملغى بنشاط بناء)' },
+          { time: '17:00-18:00', title: 'التحسين التقني', desc: 'مراجعة مستودعات الأكواد + توثيق المشاريع' },
+          { time: '20:30-21:30', title: 'الارتقاء الذهني', desc: 'قراءة كتب تطوير الذات + ديتوكس كامل' }
+        ]
+      },
+      6: {
+        title: 'سبت الإتقان — الأمن التقني والمباراة الكاملة',
+        blocks: [
+          { time: '05:00-10:00', title: 'الأكاديمية والروح', desc: 'مراجعة فيزياء + قرآن جديد (5 ساعات متواصلة)' },
+          { time: '10:00-14:00', title: 'الأمن التقني واللغات', desc: 'قرصنة أخلاقية + إنجليزية (4 ساعات متواصلة)' },
+          { time: '14:00-15:00', title: 'التدبر الصوتي', desc: 'استماع قرآن + تدبر + تحسين النبرة' },
+          { time: '15:00-16:30', title: 'كتلة الجري الانفجاري', desc: 'ساعة ونصف: sprint/interval (تحفيز النمو العظمي)' },
+          { time: '16:30-17:00', title: 'الاستشفاء والترطيب', desc: 'مغذيات دقيقة لتجنب الإجهاد (Ca/Mg/Zn)' },
+          { time: '17:00-18:30', title: 'الأداء الرياضي التنافسي', desc: 'كرة القدم: مباراة جماعية كاملة (ذكاء حركي + تفريغ طاقة)' },
+          { time: '18:30-19:30', title: 'الأنظمة البرمجية', desc: 'مراقبة مشاريع + تطوير مواقع' },
+          { time: '19:30-20:30', title: 'معايرة الأنظمة', desc: 'تطوير ذات + تقييم أسبوعي متكامل' },
+          { time: '20:30-21:30', title: 'التخطيط التكتيكي', desc: 'تحديث مهام الأسبوع القادم' },
+          { time: '21:30-23:00', title: 'نظام التحفيز الأقصى للنمو', desc: 'تمارين طول (تعلق/سباحة/سلة) + شوفان/شعير + نوم محسّن' }
+        ]
+      }
+    }
+  }
 };
 
 // ==========================================
@@ -469,32 +405,14 @@ const Utils = {
         const now = new Date();
         return now.getHours() + now.getMinutes() / 60;
     },
-    getDayName(dayIndex) {
+    getDayName(idx) {
         const days = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
-        return days[dayIndex];
-    }
-};
-
-const Toast = {
-    show(message, type = 'info') {
-        const container = document.getElementById('toastContainer');
-        if (!container) return;
-        const toast = document.createElement('div');
-        const colors = {
-            success: 'border-emerald-500 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.3)]',
-            error: 'border-rose-500 text-rose-400 shadow-[0_0_15px_rgba(225,29,72,0.3)]',
-            info: 'border-[var(--sys-cyan)] text-[var(--sys-cyan)] shadow-[0_0_15px_rgba(0,240,255,0.3)]',
-            purple: 'border-[var(--sys-purple)] text-[var(--sys-purple)] shadow-[0_0_15px_rgba(157,78,221,0.3)]'
-        };
-        toast.className = `pointer-events-auto px-5 py-3 bg-[#02040a]/95 border backdrop-blur-md text-sm font-bold sys-font tracking-wide animate-system-pop ${colors[type] || colors.info}`;
-        toast.textContent = message;
-        container.appendChild(toast);
-        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 4000);
+        return days[idx];
     }
 };
 
 // ==========================================
-// PLAYER STATE SYNC (from index9 engine)
+// PLAYER SYNC (Compatible with index9 engine)
 // ==========================================
 const PlayerSync = {
     data: { level: 1, xp: 0, gold: 0 },
@@ -528,144 +446,163 @@ const PlayerSync = {
 };
 
 // ==========================================
-// PROGRAM MANAGER (Week 1 / Week 2 Toggle)
+// CHARTER ENGINE
 // ==========================================
-const ProgramManager = {
+const Charter = {
     activeProgramId: 'week1',
 
     init() {
-        this.activeProgramId = localStorage.getItem('sovereign_active_program') || 'week1';
+        // Auto-select based on level if no manual override exists
+        const saved = localStorage.getItem('sovereign_active_program');
+        if (saved) {
+            this.activeProgramId = saved;
+        } else {
+            const lvl = PlayerSync.data.level;
+            this.activeProgramId = (lvl > 450) ? 'week2' : 'week1';
+        }
         this.renderButtons();
-        this.renderProgramInfo();
-        this.renderTodaySchedule();
+        this.renderToday();
+        this.renderWeeklyMatrix();
+        this.renderSpecialDays();
     },
 
-    switch(weekId) {
-        if (this.activeProgramId === weekId) return;
-        this.activeProgramId = weekId;
-        localStorage.setItem('sovereign_active_program', weekId);
-
-        const prog = PROGRAM_DATA[weekId];
-        Toast.show(`تم تفعيل: ${prog.title} ${prog.version}`, weekId === 'week2' ? 'purple' : 'info');
-
+    switch(id) {
+        if (this.activeProgramId === id) return;
+        this.activeProgramId = id;
+        localStorage.setItem('sovereign_active_program', id);
         this.renderButtons();
-        this.renderProgramInfo();
-        this.renderTodaySchedule();
-
-        // Log the switch
-        LogManager.addLog('system', `تبديل البروتوكول التشغيلي إلى: [${prog.title} ${prog.version}]`);
+        this.renderToday();
+        this.renderWeeklyMatrix();
+        this.renderSpecialDays();
     },
 
     renderButtons() {
         const btn1 = document.getElementById('btn-week1');
         const btn2 = document.getElementById('btn-week2');
+        const msg = document.getElementById('infinity-message');
         if(btn1) btn1.classList.toggle('active', this.activeProgramId === 'week1');
         if(btn2) btn2.classList.toggle('active', this.activeProgramId === 'week2');
 
-        const badge = document.getElementById('active-program-badge');
-        if(badge) {
-            badge.textContent = this.activeProgramId === 'week1' ? 'WEEK 1' : 'WEEK 2';
-            badge.className = this.activeProgramId === 'week1' 
-                ? 'text-xs font-bold text-[var(--sys-cyan)] sys-font border border-[var(--sys-cyan)] px-2 py-0.5 rounded bg-cyan-950/40'
-                : 'text-xs font-bold text-[var(--sys-purple)] sys-font border border-[var(--sys-purple)] px-2 py-0.5 rounded bg-purple-950/40';
-        }
-    },
-
-    renderProgramInfo() {
-        const prog = PROGRAM_DATA[this.activeProgramId];
-        const msgBox = document.getElementById('program-message');
-        if(!msgBox) return;
-
-        msgBox.classList.remove('hidden');
-        let html = `<strong class="text-[var(--sys-cyan)] block mb-1">${prog.title} — ${prog.version}</strong>`;
-        html += `<span class="block mb-1">${prog.desc}</span>`;
-        html += `<span class="text-[var(--sys-purple)] font-bold sys-font">المستوى: ${prog.range}</span>`;
-
         if (this.activeProgramId === 'week2' && PlayerSync.data.level >= 450) {
-            html += `<div class="mt-2 p-2 bg-cyan-950/40 border border-[var(--sys-cyan)] rounded animate-pulse">
-                <span class="text-[var(--sys-cyan)] font-bold sys-font text-[10px] block">[SYSTEM: SOVEREIGN AUTONOMY ACTIVATED]</span>
-                <span class="text-white text-[11px]">الآن يمكنك تدبر أمورك بنفسك. هذا هو التحسين الأخير للنظام.</span>
-            </div>`;
+            msg.classList.remove('hidden');
+        } else {
+            msg.classList.add('hidden');
         }
-        msgBox.innerHTML = html;
     },
 
-    renderTodaySchedule() {
+    renderToday() {
         const container = document.getElementById('today-schedule-container');
+        const summary = document.getElementById('day-summary');
         const dayLabel = document.getElementById('current-day-label');
-        if(!container) return;
+        const prog = PROGRAM_DATA[this.activeProgramId];
 
         const now = new Date();
-        const day = now.getDay(); // 0=Sun, 6=Sat
+        const day = now.getDay();
         const currentTime = Utils.getCurrentDecimalTime();
-        const prog = PROGRAM_DATA[this.activeProgramId];
 
         if(dayLabel) dayLabel.textContent = Utils.getDayName(day);
 
-        let html = '';
-
-        // Day header
-        const dayData = prog.days[day];
-        html += `<div class="mb-3 p-3 bg-slate-950/60 border border-slate-800 rounded">
-            <div class="flex justify-between items-center mb-2">
-                <span class="text-xs font-bold text-[var(--sys-cyan)] sys-font">DAILY DIRECTIVE</span>
-                <span class="text-[10px] text-slate-500 sys-font">${prog.version}</span>
+        // Day summary card
+        const d = prog.days[day];
+        summary.innerHTML = `
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-[11px]">
+                <div class="bg-slate-950/40 p-2 rounded border border-slate-800"><span class="text-slate-500 block">رياضة</span><span class="text-white font-bold">${d.sport}</span></div>
+                <div class="bg-slate-950/40 p-2 rounded border border-slate-800"><span class="text-slate-500 block">PPL</span><span class="text-[var(--sys-cyan)] font-bold">${d.ppl}</span></div>
+                <div class="bg-slate-950/40 p-2 rounded border border-slate-800"><span class="text-slate-500 block">ذهني</span><span class="text-[var(--sys-purple)] font-bold">${d.cognitive}</span></div>
+                <div class="bg-slate-950/40 p-2 rounded border border-slate-800"><span class="text-slate-500 block">جري</span><span class="text-emerald-400 font-bold">${d.running}</span></div>
             </div>
-            <div class="grid grid-cols-2 gap-2 text-[11px]">
-                <div><span class="text-slate-500">رياضة:</span> <span class="text-white">${dayData.sport}</span></div>
-                <div><span class="text-slate-500">PPL:</span> <span class="text-white">${dayData.ppl}</span></div>
-                <div><span class="text-slate-500">ذهني:</span> <span class="text-white">${dayData.cognitive}</span></div>
-                <div><span class="text-slate-500">جري:</span> <span class="text-white">${dayData.running}</span></div>
-            </div>
-        </div>`;
+        `;
 
         // Schedule blocks
-        let scheduleBlocks = [];
-
-        // Check if special day (Thu=4, Fri=5, Sat=6)
+        let blocks = [];
         if ([4,5,6].includes(day) && prog.special[day]) {
-            const special = prog.special[day];
-            html += `<div class="mb-2 px-2 py-1 bg-[var(--sys-purple)]/10 border border-[var(--sys-purple)]/30 rounded text-center">
-                <span class="text-[var(--sys-purple)] font-bold text-xs">${special.title}</span>
-            </div>`;
-            scheduleBlocks = special.blocks.map(b => ({
+            const sp = prog.special[day];
+            blocks = sp.blocks.map(b => ({
                 start: parseFloat(b.time.split('-')[0].replace(':','.')),
                 end: parseFloat(b.time.split('-')[1].replace(':','.')),
                 title: b.title,
                 desc: b.desc,
                 timeStr: b.time
             }));
+            // Inject special header
+            let html = `<div class="mb-2 px-2 py-1 bg-[var(--sys-purple)]/10 border border-[var(--sys-purple)]/30 rounded text-center"><span class="text-[var(--sys-purple)] font-bold text-xs">${sp.title}</span></div>`;
+            html += this.buildBlocksHtml(blocks, currentTime);
+            container.innerHTML = html;
         } else {
-            // Normal day: use unified schedule + inject sport block details
-            scheduleBlocks = prog.schedule.map(s => ({
+            blocks = prog.schedule.map(s => ({
                 start: s.start,
                 end: s.end,
                 title: s.title,
                 desc: s.desc,
                 timeStr: `${Utils.formatDecimalTime(s.start)} - ${Utils.formatDecimalTime(s.end)}`
             }));
+            container.innerHTML = this.buildBlocksHtml(blocks, currentTime);
         }
+    },
 
-        // Render blocks
+    buildBlocksHtml(blocks, currentTime) {
         let activeFound = false;
-        scheduleBlocks.forEach((block, idx) => {
+        return blocks.map(block => {
             const isActive = !activeFound && currentTime >= block.start && currentTime < block.end;
             if (isActive) activeFound = true;
-
             const activeClass = isActive ? 'block-active live-pulse' : 'bg-slate-950/40 border-slate-800';
             const titleColor = isActive ? 'text-[var(--sys-cyan)]' : 'text-slate-300';
             const icon = isActive ? '<span class="text-[var(--sys-cyan)] animate-pulse">●</span>' : '<span class="text-slate-700">○</span>';
-
-            html += `<div class="p-3 rounded border ${activeClass} mb-2 transition-all">
+            return `
+            <div class="p-3 rounded border ${activeClass} mb-2 transition-all">
                 <div class="flex justify-between items-start mb-1">
-                    <div class="flex items-center gap-2">
-                        ${icon}
-                        <span class="font-bold text-sm ${titleColor}">${block.title}</span>
-                    </div>
+                    <div class="flex items-center gap-2">${icon}<span class="font-bold text-sm ${titleColor}">${block.title}</span></div>
                     <span class="sys-font text-[10px] text-slate-500 bg-black/40 px-1.5 py-0.5 rounded">${block.timeStr}</span>
                 </div>
                 <p class="text-[11px] text-slate-400 leading-relaxed pr-5">${block.desc}</p>
                 ${isActive ? '<div class="mt-2 flex items-center gap-2"><span class="text-[9px] sys-font text-emerald-400 bg-emerald-950/30 px-2 py-0.5 rounded border border-emerald-500/30">ACTIVE BLOCK</span><span class="text-[9px] sys-font text-slate-500">NOW</span></div>' : ''}
+            </div>`;
+        }).join('');
+    },
+
+    renderWeeklyMatrix() {
+        const tbody = document.getElementById('weekly-matrix-body');
+        const prog = PROGRAM_DATA[this.activeProgramId];
+        let html = '';
+        for (let i = 0; i < 7; i++) {
+            const d = prog.days[i];
+            const isToday = (new Date().getDay() === i);
+            const rowClass = isToday ? 'bg-[var(--sys-cyan)]/5 border-[var(--sys-cyan)]/30' : 'border-slate-800 hover:bg-white/5';
+            html += `
+            <tr class="border-b ${rowClass} transition-colors">
+                <td class="p-3 font-bold text-white whitespace-nowrap">${Utils.getDayName(i)} ${isToday ? '<span class="text-[var(--sys-cyan)] text-[10px] border border-[var(--sys-cyan)] px-1 rounded ml-1">TODAY</span>' : ''}</td>
+                <td class="p-3 text-slate-300">${d.sport}</td>
+                <td class="p-3 text-slate-300">${d.running}</td>
+                <td class="p-3 text-slate-300">${d.cognitive}</td>
+                <td class="p-3 text-[var(--sys-cyan)] font-bold">${d.ppl}</td>
+            </tr>`;
+        }
+        tbody.innerHTML = html;
+    },
+
+    renderSpecialDays() {
+        const container = document.getElementById('special-days-container');
+        const prog = PROGRAM_DATA[this.activeProgramId];
+        let html = '';
+
+        [4,5,6].forEach(dayIdx => {
+            const sp = prog.special[dayIdx];
+            html += `
+            <div class="sl-panel p-5 border-t-4 ${dayIdx === 4 ? 'border-t-rose-500' : dayIdx === 5 ? 'border-t-[var(--sys-purple)]' : 'border-t-[var(--sys-cyan)]'}">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-2xl">${dayIdx === 4 ? '🕌' : dayIdx === 5 ? '🎨' : '🛡️'}</span>
+                    <h3 class="text-lg font-black text-white">${sp.title}</h3>
+                    <span class="text-[10px] sys-font text-slate-500 bg-slate-900 px-2 py-1 rounded border border-slate-800">${Utils.getDayName(dayIdx)}</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    ${sp.blocks.map(b => `
+                        <div class="bg-slate-950/60 p-3 rounded border border-slate-800 hover:border-slate-600 transition">
+                            <div class="text-[10px] sys-font text-[var(--sys-cyan)] mb-1 bg-black/40 inline-block px-2 py-0.5 rounded">${b.time}</div>
+                            <h4 class="text-sm font-bold text-white mb-1">${b.title}</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">${b.desc}</p>
+                        </div>
+                    `).join('')}
+                </div>
             </div>`;
         });
 
@@ -674,184 +611,34 @@ const ProgramManager = {
 };
 
 // ==========================================
-// LOG MANAGER (Archive Engine)
-// ==========================================
-const LogManager = {
-    currentFilter: 'all',
-
-    init() {
-        this.updateStats();
-        this.render();
-        this.setupFilters();
-        window.addEventListener('storage', (e) => {
-            if (e.key === 'sovereign_system_logs') { this.updateStats(); this.render(); }
-        });
-    },
-
-    getLogs() {
-        try { return JSON.parse(localStorage.getItem('sovereign_system_logs') || '[]'); }
-        catch(e) { return []; }
-    },
-
-    addLog(type, message) {
-        const logs = this.getLogs();
-        logs.unshift({
-            id: 'log_' + Date.now(),
-            timestamp: new Date().toLocaleTimeString('ar-EG'),
-            type: type,
-            message: message
-        });
-        localStorage.setItem('sovereign_system_logs', JSON.stringify(logs.slice(0, 200)));
-        this.updateStats();
-        this.render();
-    },
-
-    updateStats() {
-        const logs = this.getLogs();
-        const set = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
-        set('stat-total', logs.length);
-        set('stat-quests', logs.filter(l => l.type === 'quest').length);
-        set('stat-system', logs.filter(l => l.type === 'system').length);
-        set('stat-errors', logs.filter(l => l.type === 'error').length);
-    },
-
-    setupFilters() {
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                this.currentFilter = e.target.dataset.filter;
-                this.render();
-            });
-        });
-    },
-
-    getIcon(type) {
-        switch(type) {
-            case 'quest': return '<span class="text-[var(--sys-gold)]">⚔️</span>';
-            case 'system': return '<span class="text-[var(--sys-cyan)]">⚙️</span>';
-            case 'level': return '<span class="text-[var(--sys-purple)]">⭐</span>';
-            case 'error': return '<span class="text-[var(--sys-red)]">⚠️</span>';
-            default: return '<span class="text-slate-400">📄</span>';
-        }
-    },
-
-    getColorClass(type) {
-        switch(type) {
-            case 'quest': return 'log-quest';
-            case 'system': return 'log-system';
-            case 'level': return 'log-level';
-            case 'error': return 'log-error';
-            default: return 'border-slate-600';
-        }
-    },
-
-    render() {
-        const container = document.getElementById('logsContainer');
-        let logs = this.getLogs();
-
-        if (this.currentFilter !== 'all') {
-            logs = logs.filter(log => log.type === this.currentFilter);
-        }
-
-        if (logs.length === 0) {
-            container.innerHTML = `<div class="h-full flex flex-col items-center justify-center text-slate-500 space-y-3 py-10">
-                <div class="text-4xl opacity-30">📂</div>
-                <p class="font-bold tracking-widest uppercase sys-font text-xs">لا توجد سجلات مطابقة</p>
-            </div>`;
-            return;
-        }
-
-        container.innerHTML = logs.map(log => `
-            <div class="log-item ${this.getColorClass(log.type)} bg-slate-900/40 rounded-lg p-3 flex gap-3 items-start">
-                <div class="flex-shrink-0 text-lg bg-slate-950 p-1.5 rounded border border-slate-800 w-10 h-10 flex items-center justify-center">
-                    ${this.getIcon(log.type)}
-                </div>
-                <div class="flex-1 min-w-0">
-                    <div class="flex justify-between items-center mb-1">
-                        <span class="text-[10px] font-mono text-slate-400 bg-black/50 px-2 py-0.5 rounded">${log.timestamp || '00:00'}</span>
-                        <span class="text-[9px] uppercase tracking-wider text-slate-600 sys-font">${log.id || '#SYS'}</span>
-                    </div>
-                    <p class="text-sm text-slate-200 leading-relaxed font-semibold break-words">${log.message}</p>
-                </div>
-            </div>
-        `).join('');
-    },
-
-    clearLogs() {
-        if(confirm('تحذير: هل أنت متأكد من مسح جميع السجلات التاريخية؟ لا يمكن التراجع عن هذا الإجراء.')) {
-            localStorage.setItem('sovereign_system_logs', '[]');
-            this.updateStats();
-            this.render();
-            Toast.show('تم مسح السجلات التاريخية بنجاح.', 'error');
-        }
-    },
-
-    exportLogs() {
-        const logs = this.getLogs();
-        if(logs.length === 0) {
-            Toast.show('لا توجد سجلات للتصدير.', 'error');
-            return;
-        }
-        const dataStr = JSON.stringify(logs, null, 2);
-        const blob = new Blob([dataStr], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `sovereign_logs_${new Date().toISOString().slice(0,10)}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        Toast.show('تم تصدير السجلات بنجاح.', 'success');
-    }
-};
-
-
-   // ==========================================
-// المحرك الزمني الموحد والمراقب الذكي للسجلات
-// ==========================================
-const SovereignTimeUtils = {
-    getLogicalDayIndex() {
-        const now = new Date();
-        const hours = now.getHours();
-        let dayIdx = now.getDay();
-        if (hours >= 0 && hours < 3) {
-            dayIdx = (dayIdx - 1 + 7) % 7; 
-        }
-        return dayIdx;
-    }
-};
-let cachedLogicalDayIndex = SovereignTimeUtils.getLogicalDayIndex();
-
-// الكود المصحح البديل لملف system-logs.html
-setInterval(() => {
-    const currentLogicalDayIndex = SovereignTimeUtils.getLogicalDayIndex();
-    
-    if (currentLogicalDayIndex !== cachedLogicalDayIndex) {
-        console.log(`[SYSTEM ALERT]: عبور زمني! إعادة تهيئة السجلات لليوم الجديد.`);
-        window.location.reload(); 
-        return;
-    }
-
-    // تصحيح الهوية: استدعاء مدير السجلات الفعلي لتحديث التقارير المعروضة حيةً كل دقيقة
-    if (typeof LogManager !== 'undefined' && typeof LogManager.render === 'function') {
-        LogManager.render(); 
-    }
-}, 60000);
-// ==========================================
 // INITIALIZATION
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     PlayerSync.init();
-    ProgramManager.init();
-    LogManager.init();
-});
+    Charter.init();
+   // ==========================================
+// SYSTEM AUTO-REFRESH & DAY CROSSING MONITOR
+// ==========================================
 
-// Global exposure
-window.ProgramManager = ProgramManager;
-window.LogManager = LogManager;
-window.Toast = Toast;
+
+setInterval(() => {
+    const currentLogicalDayIndex = SovereignTimeUtils.getLogicalDayIndex();
+    
+    // التحقق: هل عبرنا لليوم الجديد؟ (مثلاً تعدينا الساعة 3:00 صباحاً)
+    if (currentLogicalDayIndex !== cachedLogicalDayIndex) {
+        console.log(`[SYSTEM ALERT]: عبور زمني مكتشف! الانتقال إلى اليوم السيادي: ${currentLogicalDayIndex}`);
+        
+        // الطريقة الأكثر أماناً واستقراراً لتحديث العناوين، الأيقونات، والجداول
+        // هي إعادة تحميل الصفحة بصمت لتهيئة الـ DOM من الصفر بمعطيات اليوم الجديد
+        window.location.reload(); 
+        return; // إيقاف التنفيذ هنا
+    }
+
+    // إذا لم يتغير اليوم، قم بالتحديث الطبيعي للكتل الزمنية
+    if (typeof ProgramManager !== 'undefined' && typeof ProgramManager.renderCurrentBlock === 'function') {
+        ProgramManager.renderCurrentBlock();
+    }
+}, 60000);});
 </script>
 </body>
 </html>
