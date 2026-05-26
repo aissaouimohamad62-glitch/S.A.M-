@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign System | Active Quests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sys-cyan: #00f0ff;
+            --sys-cyan-glow: rgba(0, 240, 255, 0.4);
+            --sys-purple: #9d4edd;
+            --sys-purple-glow: rgba(157, 78, 221, 0.3);
+            --sys-bg-dark: #02040a;
+            --sys-panel: rgba(5, 10, 25, 0.85);
+        }
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background-color: var(--sys-bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 50%, var(--sys-cyan-glow) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, var(--sys-purple-glow) 0%, transparent 25%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        .sys-font { font-family: 'Rajdhani', sans-serif; letter-spacing: 0.05em; }
+        .sl-panel {
+            background: var(--sys-panel);
+            backdrop-filter: blur(16px);
+            border: 2px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.1);
+            position: relative;
+        }
+        .sl-panel::before, .sl-panel::after {
+            content: ''; position: absolute; width: 20px; height: 20px; pointer-events: none;
+        }
+        .sl-panel::before { top: -2px; left: -2px; border-top: 3px solid var(--sys-cyan); border-left: 3px solid var(--sys-cyan); }
+        .sl-panel::after { bottom: -2px; right: -2px; border-bottom: 3px solid var(--sys-cyan); border-right: 3px solid var(--sys-cyan); }
+        
+        @keyframes systemPopIn {
+            0% { opacity: 0; transform: scale(0.95) translateY(10px); filter: brightness(2); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: brightness(1); }
+        }
+        .animate-system-pop { animation: systemPopIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--sys-cyan); }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    
+    <nav class="max-w-4xl mx-auto mb-6 p-2 bg-slate-900/60 backdrop-blur border border-slate-800 rounded-lg flex flex-wrap justify-center gap-2 animate-system-pop">
+        <a href="index.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-[var(--sys-cyan)] text-white rounded transition sys-font font-bold uppercase">🏠 الرئيسية</a>
+        <a href="schedule.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-[var(--sys-cyan)] text-white rounded transition sys-font font-bold uppercase">👑 الحالة</a>
+        <a href="dungeons.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-red-500 text-white rounded transition sys-font font-bold uppercase">🧠 الزنازين</a>
+        <a href="brain-stats.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-[var(--sys-cyan)] text-white rounded transition sys-font font-bold uppercase">🧠 إحصائيات العقل</a>
+        <a href="active-quests.html" class="px-3 py-1.5 text-xs bg-[var(--sys-cyan)]/10 border border-[var(--sys-cyan)] text-[var(--sys-cyan)] rounded transition sys-font font-bold uppercase">⚔️ المهام النشطة</a>
+        <a href="monarch-ai.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-[var(--sys-cyan)] text-white rounded transition sys-font font-bold uppercase">🤖 المستشار</a>
+        <a href="system-logs.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-slate-400 text-white rounded transition sys-font font-bold uppercase">📂 السجلات</a>
+    </nav>
+
+    <header class="max-w-4xl mx-auto mb-8 p-4 bg-slate-900/60 backdrop-blur border border-slate-800 flex flex-col md:flex-row justify-between items-center rounded-lg animate-system-pop gap-4">
+        <div class="flex items-center gap-4">
+            <a href="index.html" class="text-xs bg-slate-800 px-3 py-2 border border-slate-700 hover:border-[var(--sys-cyan)] transition text-white rounded">↩ العودة</a>
+            <div>
+                <h1 class="sys-font text-xl font-black tracking-widest text-[var(--sys-cyan)] uppercase">⚔️ Active Quests Terminal</h1>
+                <p class="text-[10px] text-slate-400">مراقبة المهام والتوجيهات النشطة الجاري تنفيذها حالياً</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-6 sys-font">
+            <div class="text-right">
+                <span class="text-[10px] text-slate-400 block">GOLD</span>
+                <span id="header-gold" class="text-xl font-bold text-amber-400">0</span>
+            </div>
+            <div class="text-right">
+                <span class="text-[10px] text-slate-400 block">LEVEL</span>
+                <span id="header-level" class="text-xl font-bold text-[var(--sys-cyan)]">1</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto animate-system-pop" style="animation-delay: 0.1s;">
+        <div class="sl-panel p-6 rounded-xl">
+            <div class="text-center mb-8 border-b border-[var(--sys-cyan)]/30 pb-4">
+                <div class="sys-font text-[var(--sys-cyan)] tracking-[0.5em] text-sm mb-2 font-bold">CURRENT DIRECTIVES</div>
+                <h2 class="text-3xl font-black text-white drop-shadow-[0_0_10px_var(--sys-cyan)]">لوحة تتبع المهام الحالية</h2>
+            </div>
+            
+            <div id="questContainer">
+                </div>
+        </div>
+    </main>
+
+    <script>
+        let timerInterval = null;
+
+        // ==========================================
+        // SYSTEM CORE SYNC
+        // ==========================================
+        const PlayerState = {
+            data: { level: 1, gold: 0 },
+            init() {
+                const saved = localStorage.getItem('monarch_system_data');
+                if (saved) {
+                    try { this.data = { ...this.data, ...JSON.parse(saved) }; } catch(e) {}
+                }
+                this.updateUI();
+            },
+            updateUI() {
+                if(document.getElementById('header-gold')) document.getElementById('header-gold').textContent = this.data.gold || 0;
+                if(document.getElementById('header-level')) document.getElementById('header-level').textContent = this.data.level || 1;
+            }
+        };
+
+        // ==========================================
+        // QUEST MANAGER ENGINE
+        // ==========================================
+        const QuestManager = {
+            init() {
+                this.render();
+            },
+
+            render() {
+                const container = document.getElementById('questContainer');
+                if(!container) return;
+
+                clearInterval(timerInterval);
+
+                const activeQuestRaw = localStorage.getItem('sovereign_active_quest');
+                const startTimeRaw = localStorage.getItem('directive_start_time');
+
+                if (!activeQuestRaw) {
+                    container.innerHTML = `
+                        <div class="text-center py-12 bg-slate-900/40 border border-dashed border-slate-800 rounded-lg">
+                            <span class="text-4xl block mb-4">💤</span>
+                            <h3 class="text-lg font-bold text-slate-400 mb-2">لا توجد مهمة نشطة حالياً</h3>
+                            <p class="text-xs text-slate-500 max-w-sm mx-auto mb-6">قم بزيارة اللوحة الرئيسية أو استشر المستشار الآلي لاستدعاء وقبول مهمة جديدة.</p>
+                            <a href="index.html" class="px-6 py-2 bg-slate-850 border border-slate-700 text-xs text-white rounded hover:border-[var(--sys-cyan)] transition-colors">🧠 الذهاب للقائمة الرئيسية</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let quest = {};
+                try { quest = JSON.parse(activeQuestRaw); } catch(e) { quest = { title: activeQuestRaw, duration: 30 }; }
+
+                container.innerHTML = `
+                    <div class="bg-slate-900/80 border border-[var(--sys-cyan)]/40 p-6 rounded-lg">
+                        <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
+                            <div>
+                                <span class="px-2 py-0.5 bg-[var(--sys-cyan)]/10 text-[var(--sys-cyan)] border border-[var(--sys-cyan)]/30 text-[10px] rounded uppercase font-bold sys-font tracking-wider">ACTIVE DIRECTIVE</span>
+                                <h3 class="text-xl font-bold text-white mt-2">${quest.title || 'مهمة مجهولة المعالم'}</h3>
+                                <p class="text-xs text-slate-400 mt-1">${quest.description || 'توجيهات صارمة صادرة من النظام السيادي لتطوير القدرات الحالية.'}</p>
+                            </div>
+                            <div class="text-center bg-slate-950 p-4 border border-slate-800 rounded w-full md:w-auto">
+                                <span class="text-[10px] text-slate-500 block uppercase sys-font font-bold">Time Remaining</span>
+                                <span id="questTimer" class="text-2xl font-mono font-black text-[var(--sys-cyan)] tracking-wider">--:--</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4 pt-4 border-t border-slate-800/60 justify-end">
+                            <button onclick="QuestManager.abandon()" class="px-4 py-2 bg-red-950/20 border border-red-500/40 text-red-400 text-xs rounded hover:bg-red-500 hover:text-white transition-all">
+                                ❌ إلغاء التوجيه وتطهير الذاكرة
+                            </button>
+                            <button onclick="QuestManager.complete()" class="px-6 py-2 bg-emerald-950/20 border border-emerald-500/40 text-emerald-400 text-xs font-bold rounded hover:bg-emerald-500 hover:text-white transition-all shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+                                ✔️ تأكيد إتمام المهمة بنجاح
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                if (startTimeRaw) {
+                    const durationMs = (quest.duration || 30) * 60 * 1000;
+                    const endTime = parseInt(startTimeRaw) + durationMs;
+
+                    const updateTimer = () => {
+                        const now = Date.now();
+                        const diff = endTime - now;
+
+                        if (diff <= 0) {
+                            document.getElementById('questTimer').textContent = "00:00 - مكتملة";
+                            document.getElementById('questTimer').classList.replace('text-[var(--sys-cyan)]', 'text-emerald-400');
+                            clearInterval(timerInterval);
+                        } else {
+                            const minutes = Math.floor(diff / (1000 * 60));
+                            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                            document.getElementById('questTimer').textContent = 
+                                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                        }
+                    };
+
+                    updateTimer();
+                    timerInterval = setInterval(updateTimer, 1000);
+                }
+            },
+
+            abandon() {
+                if (confirm('هل أنت متأكد من إلغاء المهمة الحالية؟ سيتم مسح التوجيه وتطهير الذاكرة.')) {
+                    localStorage.removeItem('sovereign_active_quest');
+                    localStorage.removeItem('directive_start_time');
+                    this.logAction('abandon', 'تم إلغاء المهمة وتطهير ذاكرة التوجيهات الحالية.');
+                    this.render();
+                }
+            },
+
+            complete() {
+    const activeQuestRaw = localStorage.getItem('sovereign_active_quest');
+    let quest = {};
+    try { quest = JSON.parse(activeQuestRaw); } catch(e) {}
+    
+    // استخراج المكافأة الفعلية للمهمة (إذا لم توجد، الافتراضي هو 10 XP)
+    const xpReward = quest.rewardXP || 10;
+    const goldReward = xpReward * 2; // القاعدة الاقتصادية للنظام
+
+    localStorage.removeItem('sovereign_active_quest');
+    localStorage.removeItem('directive_start_time');
+
+    // إضافة المكافآت لبيانات اللاعب
+    PlayerState.data.xp = (PlayerState.data.xp || 0) + xpReward;
+    PlayerState.data.gold = (PlayerState.data.gold || 0) + goldReward;
+    
+    // فحص وتطبيق الترقية إذا لزم الأمر
+    const nextXpRequired = (PlayerState.data.level || 1) * 100;
+    if(PlayerState.data.xp >= nextXpRequired) {
+        PlayerState.data.xp -= nextXpRequired;
+        PlayerState.data.level = (PlayerState.data.level || 1) + 1;
+        PlayerState.data.ap = (PlayerState.data.ap || 0) + 3;
+    }
+    
+    localStorage.setItem('monarch_system_data', JSON.stringify(PlayerState.data));
+    
+    this.logAction('complete', `إتمام المهمة النشطة [${quest.title || 'مجهولة'}]: +${xpReward} XP | +${goldReward} Gold`);
+    PlayerState.init();
+    this.render();
+},
+
+            logAction(action, detail) {
+                // إدخال السجل في مصفوفة السجلات المركزية لربط الأنظمة بالكامل
+                const logs = JSON.parse(localStorage.getItem('sovereign_system_logs') || '[]');
+                logs.unshift({
+                    id: 'log_' + Date.now(),
+                    timestamp: new Date().toLocaleTimeString('ar-EG'),
+                    type: action === 'complete' ? 'quest' : 'system',
+                    message: detail
+                });
+                localStorage.setItem('sovereign_system_logs', JSON.stringify(logs.slice(0, 100)));
+            }
+        };
+
+        // ==========================================
+        // INITIALIZATION
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            PlayerState.init();
+            QuestManager.init();
+
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'monarch_system_data' || e.key === 'sovereign_active_quest') {
+                    PlayerState.init();
+                    QuestManager.init();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

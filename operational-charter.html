@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign System | Operational Charter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sys-cyan: #00f0ff;
+            --sys-cyan-glow: rgba(0, 240, 255, 0.4);
+            --sys-purple: #9d4edd;
+            --sys-purple-glow: rgba(157, 78, 221, 0.3);
+            --sys-gold: #d4af37;
+            --sys-gold-glow: rgba(212, 175, 55, 0.3);
+            --sys-bg-dark: #02040a;
+            --sys-panel: rgba(5, 10, 25, 0.85);
+        }
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background-color: var(--sys-bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 50%, var(--sys-purple-glow) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, var(--sys-gold-glow) 0%, transparent 25%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        .sys-font { font-family: 'Rajdhani', sans-serif; letter-spacing: 0.05em; }
+        .sl-panel {
+            background: var(--sys-panel);
+            backdrop-filter: blur(16px);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15), inset 0 0 15px rgba(212, 175, 55, 0.1);
+            position: relative;
+        }
+        .sl-panel::before, .sl-panel::after {
+            content: ''; position: absolute; width: 20px; height: 20px; pointer-events: none;
+        }
+        .sl-panel::before { top: -2px; left: -2px; border-top: 3px solid var(--sys-gold); border-left: 3px solid var(--sys-gold); }
+        .sl-panel::after { bottom: -2px; right: -2px; border-bottom: 3px solid var(--sys-gold); border-right: 3px solid var(--sys-gold); }
+        
+        @keyframes systemPopIn {
+            0% { opacity: 0; transform: scale(0.95) translateY(10px); filter: brightness(2); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: brightness(1); }
+        }
+        .animate-system-pop { animation: systemPopIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--sys-gold); }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    
+    <nav class="max-w-4xl mx-auto mb-6 p-2 bg-slate-900/60 backdrop-blur border border-slate-800 rounded-lg flex flex-wrap justify-center gap-2 animate-system-pop">
+        <a href="index.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-[var(--sys-cyan)] text-white rounded transition sys-font font-bold uppercase">🏠 الرئيسية</a>
+        <a href="schedule.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-[var(--sys-cyan)] text-white rounded transition sys-font font-bold uppercase">👑 الحالة</a>
+        <a href="dungeons.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-red-500 text-white rounded transition sys-font font-bold uppercase">🧠 الزنازين</a>
+        <a href="brain-stats.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-[var(--sys-cyan)] text-white rounded transition sys-font font-bold uppercase">🧠 إحصائيات العقل</a>
+        <a href="active-quests.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-[var(--sys-cyan)] text-white rounded transition sys-font font-bold uppercase">⚔️ المهام النشطة</a>
+        <a href="operational-charter.html" class="px-3 py-1.5 text-xs bg-[var(--sys-gold)]/10 border border-[var(--sys-gold)] text-[var(--sys-gold)] rounded transition sys-font font-bold uppercase">📜 الميثاق التشغيلي</a>
+        <a href="monarch-ai.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-[var(--sys-cyan)] text-white rounded transition sys-font font-bold uppercase">🤖 المستشار</a>
+        <a href="system-logs.html" class="px-3 py-1.5 text-xs bg-slate-800 border border-slate-700 hover:border-slate-400 text-white rounded transition sys-font font-bold uppercase">📂 السجلات</a>
+    </nav>
+
+    <header class="max-w-4xl mx-auto mb-8 p-4 bg-slate-900/60 backdrop-blur border border-slate-800 flex flex-col md:flex-row justify-between items-center rounded-lg animate-system-pop gap-4">
+        <div class="flex items-center gap-4">
+            <a href="index.html" class="text-xs bg-slate-800 px-3 py-2 border border-slate-700 hover:border-[var(--sys-gold)] transition text-white rounded">↩ العودة</a>
+            <div>
+                <h1 class="sys-font text-xl font-black tracking-widest text-[var(--sys-gold)] uppercase">📜 Operational Charter</h1>
+                <p class="text-[10px] text-slate-400">المرجعية الدستورية والقوانين الحاكمة للنهوض السيادي</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-6 sys-font">
+            <div class="text-right">
+                <span class="text-[10px] text-slate-400 block">TITLES</span>
+                <span id="header-titles-count" class="text-xl font-bold text-[var(--sys-gold)]">1</span>
+            </div>
+            <div class="text-right">
+                <span class="text-[10px] text-slate-400 block">LEVEL</span>
+                <span id="header-level" class="text-xl font-bold text-[var(--sys-cyan)]">1</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto animate-system-pop" style="animation-delay: 0.1s;">
+        <div class="sl-panel p-6 rounded-xl">
+            <div class="text-center mb-8 border-b border-[var(--sys-gold)]/30 pb-4">
+                <div class="sys-font text-[var(--sys-gold)] tracking-[0.5em] text-sm mb-2 font-bold">ABSOLUTE DISCIPLINE</div>
+                <h2 class="text-3xl font-black text-white drop-shadow-[0_0_10px_var(--sys-gold)]">دستور عاهل الظلال</h2>
+            </div>
+            
+            <div class="space-y-6">
+                
+                <div class="bg-slate-900/80 p-5 border-r-4 border-[var(--sys-gold)] rounded-l-lg hover:bg-slate-900 transition-colors">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-[var(--sys-gold)] sys-font tracking-wider">ARTICLE 01 / PRINCIPLE OF GROWTH</span>
+                        <span class="text-xs px-2 py-0.5 bg-emerald-950/50 text-emerald-400 border border-emerald-800/30 rounded font-mono">ملزم</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-1">الالتزام الصارم بالتطور المستمر</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">ينص النظام على أن التراجع أو التوقف عن تصفية الزنازين وتحديث المعارف يعد انتهاكاً لبروتوكول الحماية. التقدم اليومي ليس خياراً، بل آلية بقاء أساسية لحفظ الهالة السيادية.</p>
+                </div>
+
+                <div class="bg-slate-900/80 p-5 border-r-4 border-[var(--sys-purple)] rounded-l-lg hover:bg-slate-900 transition-colors">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-[var(--sys-purple)] sys-font tracking-wider">ARTICLE 02 / INTELLECTUAL DOMINANCE</span>
+                        <span class="text-xs px-2 py-0.5 bg-emerald-950/50 text-emerald-400 border border-emerald-800/30 rounded font-mono">ملزم</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-1">تنمية الذكاء السائل (Fluid Intelligence)</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">يجب مواجهة تحديات الزنازين الذهنية (N-Back, Chess, Sudoku) بصفة دورية لرفع نقاط الـ INT. استخدام العقل كأداة حاسمة للتحكم وإدارة الأزمات هو العمود الفقري للميثاق.</p>
+                </div>
+
+                <div class="bg-slate-900/80 p-5 border-r-4 border-[var(--sys-cyan)] rounded-l-lg hover:bg-slate-900 transition-colors">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-[var(--sys-cyan)] sys-font tracking-wider">ARTICLE 03 / AUTOMATION & SYNC</span>
+                        <span class="text-xs px-2 py-0.5 bg-cyan-950/50 text-[var(--sys-cyan)] border border-cyan-800/30 rounded font-mono">تقني</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-1">الامتثال للمستشار والتكامل المركزي</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">جميع البيانات، التوجيهات، والسجلات تخضع للتخزين والتزامن المركزي (LocalStorage). لا يتم اتخاذ قرارات مصيرية دون مراجعة مستشار الذكاء الاصطناعي الخاص بالنظام.</p>
+                </div>
+
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-800/60 text-center">
+                <p class="text-[10px] text-slate-500 font-mono tracking-widest uppercase mb-2">Sovereign System Signature Protocol</p>
+                <div class="inline-block px-6 py-2 bg-slate-950 border border-[var(--sys-gold)]/40 rounded text-xs text-[var(--sys-gold)] font-bold tracking-widest">
+                    🔒 تم التصديق عليه بواسطة عاهل الظلال
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ==========================================
+        // SYSTEM CORE SYNC
+        // ==========================================
+        const PlayerState = {
+            data: { level: 1 },
+            init() {
+                const saved = localStorage.getItem('monarch_system_data');
+                if (saved) {
+                    try { this.data = { ...this.data, ...JSON.parse(saved) }; } catch(e) {}
+                }
+                
+                const ownedTitles = JSON.parse(localStorage.getItem('sovereign_owned_titles') || '["tier_1_alpha"]');
+                
+                if(document.getElementById('header-titles-count')) document.getElementById('header-titles-count').textContent = ownedTitles.length;
+                if(document.getElementById('header-level')) document.getElementById('header-level').textContent = this.data.level || 1;
+            }
+        };
+
+        // ==========================================
+        // INITIALIZATION
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            PlayerState.init();
+
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'monarch_system_data' || e.key === 'sovereign_owned_titles') {
+                    PlayerState.init();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
